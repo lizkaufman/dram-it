@@ -1,0 +1,21 @@
+#header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0 auto;
+  width: 100vw;
+}
+
+#headerImg {
+  width: auto;
+  height: 5vh;
+  padding: 2vh;
+  margin-left: 6vw;
+}
+
+#headerText {
+  color: var(--accent);
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
+}
