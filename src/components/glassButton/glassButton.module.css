@@ -1,0 +1,5 @@
+#buttonImg {
+  height: 10vh;
+  width: auto;
+  background-color: var(--accent);
+}
