@@ -1,0 +1,13 @@
+#buttonImg {
+  height: 6.6vh;
+  width: auto;
+  background-color: var(--accent);
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+  margin: 2vh;
+}
+
+#buttonImg:hover {
+  cursor: pointer;
+}

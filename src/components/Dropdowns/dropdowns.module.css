@@ -1,0 +1,29 @@
+#dropdowns {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 3vh;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 1vh;
+}
+
+.dropdownLabel {
+  color: var(--accent);
+  font-weight: bold;
+}
+
+.dropdownSelector {
+  background-color: var(--box-background);
+  width: 40vw;
+  margin: 1vh auto;
+  font-weight: bold;
+  font-size: 90%;
+  border-radius: 10px;
+  padding: 5px;
+  text-align-last: center;
+}
