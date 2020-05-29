@@ -9,6 +9,7 @@ function Dropdowns() {
       <label>
         <span class={css.dropdownLabel}>Region: </span>
         <select class={css.dropdownSelector}>
+        <option value=""></option>
           <option value="highlands">Highlands</option>
           <option value="island">Island</option>
           <option value="islay">Islay</option>
@@ -26,6 +27,7 @@ function Dropdowns() {
       <label>
         <span class={css.dropdownLabel}>Price range: </span>
         <select class={css.dropdownSelector} id={css.priceSelector}>
+          <option value=""></option>
           <option value="$">£</option>
           <option value="$$">££</option>
           <option value="$$$">£££</option>
@@ -35,6 +37,7 @@ function Dropdowns() {
       <label>
         <span class={css.dropdownLabel}>Flavour mood: </span>
         <select class={css.dropdownSelector}>
+        <option value=""></option>
             {flavorNames.sort().map((flavor)=><option value={flavor}>{flavor}</option>)}
         </select>
       </label>
