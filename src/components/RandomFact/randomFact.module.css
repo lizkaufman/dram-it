@@ -1,7 +1,7 @@
 #randomFact {
   background-color: var(--box-background);
-  margin: 0 auto;
-  width: 75vw;
+  margin: 3vh auto;
+  width: 65vw;
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);

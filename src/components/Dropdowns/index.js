@@ -1,6 +1,8 @@
 import React from 'react';
 import css from './dropdowns.module.css';
 
+const flavorNames = ["caramel", "sweet", "spicy", "ginger", "sherry", "peppery", "floral", "light", "rich", "buttery", "balanced", "fruity", "cherry", "toffee", "orange", "vanilla", "salty", "bitter", "oak", "butterscotch", "dry", "herbal", "maple", "tobacco", "wood", "coffee", "licorice", "earthy", "smokey", "complex", "creamy", "mild", "chocolate", "honey", "raisins", "balanced", "cinnamon", "pear", "apple", "nutty", "corn", "heavy", "lingering"]
+
 function Dropdowns() {
   return (
     <div id={css.dropdowns}>
@@ -31,9 +33,9 @@ function Dropdowns() {
       </label>
 
       <label>
-        <span class={css.dropdownLabel}>Flavour: </span>
+        <span class={css.dropdownLabel}>Flavour mood: </span>
         <select class={css.dropdownSelector}>
-          <option value="">test</option>
+            {flavorNames.sort().map((flavor)=><option value={flavor}>{flavor}</option>)}
         </select>
       </label>
     </div>
