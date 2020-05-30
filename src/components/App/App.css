@@ -9,3 +9,11 @@
   font-weight: normal;
   font-size: 18px;
 }
+
+#slainte {
+  font-weight: bold;
+}
+
+#tryAgainMessage {
+  font-size: initial;
+}
