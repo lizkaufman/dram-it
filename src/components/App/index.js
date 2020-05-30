@@ -65,6 +65,7 @@ function App() {
   function handleGlassButtonPress() {
     //TODO: take the 1-3 bits from dropdown reducer state and add their value to the fetch url state (along w/ = and &) - will prob need if statement/switch/etc.; need to check if each one is present, and if so, add its value to the url
     //TODO: FETCH HERE!
+    console.log({ criteriaState });
     setShowWhisky(true);
   }
 
