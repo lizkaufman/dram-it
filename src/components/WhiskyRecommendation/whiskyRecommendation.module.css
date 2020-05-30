@@ -1,0 +1,29 @@
+#whiskyRecommendation {
+  background-color: var(--box-background);
+  margin: 3vh auto;
+  width: 70vw;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+}
+
+#whiskyImg {
+  width: 50vw;
+  height: auto;
+  padding-bottom: 1.2vh;
+  padding-top: 2.4vh;
+}
+
+.infoSection {
+  margin: 0;
+  padding-top: 1.2vh;
+}
+
+#tastingNotesHeader {
+  margin: 0;
+}
+
+#tastingNotesList {
+  margin: 0;
+  padding: 1.2vh;
+}
