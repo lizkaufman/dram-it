@@ -2,7 +2,7 @@ import React from 'react';
 
 import css from './glassButton.module.css';
 
-function glassButton() {
+function GlassButton() {
   return (
     <img
       id={css.buttonImg}
@@ -12,4 +12,4 @@ function glassButton() {
   );
 }
 
-export default glassButton;
+export default GlassButton;
