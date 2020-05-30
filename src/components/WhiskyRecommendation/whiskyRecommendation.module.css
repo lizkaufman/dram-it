@@ -10,6 +10,13 @@
 #whiskyImg {
   width: 50vw;
   height: auto;
+  padding-bottom: 1.2vh;
+  padding-top: 2.4vh;
+}
+
+.infoSection {
+  margin: 0;
+  padding-top: 1.2vh;
 }
 
 #region {
@@ -19,7 +26,11 @@
 }
 
 #tastingNotesHeader {
+  margin: 0;
 }
 
 #tastingNotesList {
+  margin: 0;
+  padding-top: 1.2vh;
+  padding-bottom: ;
 }
