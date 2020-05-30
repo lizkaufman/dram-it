@@ -48,7 +48,7 @@ function App() {
   );
 
   function handleGlassButtonPress() {
-    //TODO: FETCH!
+    //TODO: FETCH HERE!
     setShowWhisky(true);
   }
 
@@ -67,7 +67,7 @@ function App() {
             particulars below and tap the glass for whisky wisdom.
           </h3>
           <Dropdowns />
-          <GlassButton />
+          <GlassButton handleClick={handleGlassButtonPress} />
           <RandomFact />
         </>
       ) : (
@@ -79,7 +79,7 @@ function App() {
           <h3 class="subhead" id="slainte">
             Sláinte!
           </h3>
-          <h4 class="subhead" id="tryAgainMessage">
+          <h4 class="subhead" id="tryAgainMessage" onClick={handleTryAgain}>
             Not quite hitting the spot? Tap here to consult the whisky oracle
             again.
           </h4>
