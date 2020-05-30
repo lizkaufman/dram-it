@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from 'react';
+import React, { useState, useReducer, useEffect } from 'react';
 import './App.css';
 
 import Header from '../Header';
@@ -47,6 +47,20 @@ function App() {
     initialFetchCriteriaState
   );
 
+  //fetches the random fact:
+  useEffect(() => {
+    fetch(`${apiUrl}randomfact/`)
+      .then((response) => {
+        // return response.json();
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+        //get fact out of returned object
+        //set fact state w/ resulting fact
+      });
+  }, []);
+
   function handleGlassButtonPress() {
     //TODO: FETCH HERE!
     setShowWhisky(true);
@@ -62,7 +76,7 @@ function App() {
       <Header />
       {!showWhisky ? (
         <>
-          <h3 class="subhead">
+          <h3 className="subhead">
             Muddled over malts? Boggled by barley? Simply set one or more of the
             particulars below and tap the glass for whisky wisdom.
           </h3>
@@ -72,14 +86,14 @@ function App() {
         </>
       ) : (
         <>
-          <h3 class="subhead">
+          <h3 className="subhead">
             Our slightly swaying sages have pondered your request and suggest:
           </h3>
           <WhiskyRecommendation />
-          <h3 class="subhead" id="slainte">
+          <h3 className="subhead" id="slainte">
             Sláinte!
           </h3>
-          <h4 class="subhead" id="tryAgainMessage" onClick={handleTryAgain}>
+          <h4 className="subhead" id="tryAgainMessage" onClick={handleTryAgain}>
             Not quite hitting the spot? Tap here to consult the whisky oracle
             again.
           </h4>
