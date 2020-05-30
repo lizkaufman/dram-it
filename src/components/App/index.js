@@ -54,7 +54,6 @@ function App() {
   useEffect(() => {
     fetch(`${apiUrl}randomfact/`)
       .then((response) => {
-        // return response.json();
         return response.json();
       })
       .then((data) => {
