@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from 'react';
+import React, { useState, useReducer, useEffect } from 'react';
 import './App.css';
 
 import Header from '../Header';
@@ -41,11 +41,26 @@ function App() {
   //state that manages whether the initial screen w/ dropdowns shows or the results screen:
   const [showWhisky, setShowWhisky] = useState(false);
 
+  //state to hold the fact:
+  const [fact, setFact] = useState('');
+
   //reducer that populates fetch for whisky matching criteria:
   const [fetchCriteriaState, dispatch] = useReducer(
     fetchCriteriaReducer,
     initialFetchCriteriaState
   );
+
+  //fetches the random fact:
+  useEffect(() => {
+    fetch(`${apiUrl}randomfact/`)
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        const factObj = data;
+        setFact(factObj['results'][0]['text']);
+      });
+  }, []);
 
   function handleGlassButtonPress() {
     //TODO: FETCH HERE!
@@ -62,24 +77,24 @@ function App() {
       <Header />
       {!showWhisky ? (
         <>
-          <h3 class="subhead">
+          <h3 className="subhead">
             Muddled over malts? Boggled by barley? Simply set one or more of the
             particulars below and tap the glass for whisky wisdom.
           </h3>
           <Dropdowns />
           <GlassButton handleClick={handleGlassButtonPress} />
-          <RandomFact />
+          <RandomFact fact={fact} />
         </>
       ) : (
         <>
-          <h3 class="subhead">
+          <h3 className="subhead">
             Our slightly swaying sages have pondered your request and suggest:
           </h3>
           <WhiskyRecommendation />
-          <h3 class="subhead" id="slainte">
+          <h3 className="subhead" id="slainte">
             Sláinte!
           </h3>
-          <h4 class="subhead" id="tryAgainMessage" onClick={handleTryAgain}>
+          <h4 className="subhead" id="tryAgainMessage" onClick={handleTryAgain}>
             Not quite hitting the spot? Tap here to consult the whisky oracle
             again.
           </h4>
