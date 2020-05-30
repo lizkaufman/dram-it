@@ -58,7 +58,6 @@ function App() {
         return response.json();
       })
       .then((data) => {
-        console.log(data);
         const factObj = data;
         setFact(factObj['results'][0]['text']);
       });
