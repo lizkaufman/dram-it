@@ -37,10 +37,8 @@ export function criteriaReducer(criteriaState, action) {
 function App() {
   //state that manages whether the initial screen w/ dropdowns shows or the results screen:
   const [showWhisky, setShowWhisky] = useState(false);
-
   //state to hold the fact:
   const [fact, setFact] = useState('');
-
   //state to hold the fetch url:
   const [fetchUrl, setFetchUrl] = useState('shoot/?');
 
@@ -64,8 +62,20 @@ function App() {
 
   function handleGlassButtonPress() {
     //TODO: take the 1-3 bits from dropdown reducer state and add their value to the fetch url state (along w/ = and &) - will prob need if statement/switch/etc.; need to check if each one is present, and if so, add its value to the url
+    const { region, priceRange, flavourMood } = criteriaState;
+    if (region) {
+      console.log('button pressed', region);
+      setFetchUrl(...(fetchUrl + `=${region}&`));
+    }
+    if (priceRange) {
+      console.log('button pressed', priceRange);
+      setFetchUrl(...(fetchUrl + `=${priceRange}&`));
+    }
+    if (flavourMood) {
+      console.log('button pressed', flavourMood);
+      setFetchUrl(...(fetchUrl + `=${flavourMood}&`));
+    }
     //TODO: FETCH HERE!
-    console.log({ criteriaState });
     setShowWhisky(true);
   }
 
