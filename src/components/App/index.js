@@ -15,6 +15,7 @@ import {
 } from './actionTypes';
 
 //TODO: need a screen for if the selection doesn't result in anything (i.e. they select specifics from all 3 categories and there isn't a match that meets the 3 characteristics); can have a tip to start broader, maybe with region and price or just flavor
+//TODO: also need an error message for if the user doesn't select anything in the dropdowns and then tries to click the glass!
 
 const apiUrl = 'https://evening-citadel-85778.herokuapp.com/';
 
@@ -73,19 +74,22 @@ function App() {
     const { region, priceRange, flavourMood } = criteriaState;
     if (region) {
       console.log('button pressed', region);
-      setFetchUrl(...(fetchUrl + `=${region}&`));
+      setFetchUrl(...(fetchUrl + `region=${region}&`));
     }
     if (priceRange) {
       console.log('button pressed', priceRange);
-      setFetchUrl(...(fetchUrl + `=${priceRange}&`));
+      setFetchUrl(...(fetchUrl + `price=${priceRange}&`));
     }
     if (flavourMood) {
       console.log('button pressed', flavourMood);
-      setFetchUrl(...(fetchUrl + `=${flavourMood}&`));
+      setFetchUrl(...(fetchUrl + `tags=${flavourMood}&`));
     }
     //TODO: FETCH HERE!
-    criteriaDispatch({ type: CLEAR });
-    setShowWhisky(true);
+    //TODO: logic to pick a random one out of the results
+    //TODO: trigger separate messages for blank dropdowns or blank results (might need to use a state at this level and then pass it down to the whisky rec component to actualy render the messages!)
+    criteriaDispatch({ type: CLEAR }); //clears dropdowns
+    setFetchUrl('shoot/?'); //clears fetchUrl
+    setShowWhisky(true); //shows result
   }
 
   function handleTryAgain() {
