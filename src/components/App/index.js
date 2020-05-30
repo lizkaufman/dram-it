@@ -7,7 +7,12 @@ import GlassButton from '../GlassButton';
 import RandomFact from '../RandomFact';
 import WhiskyRecommendation from '../WhiskyRecommendation';
 
-import { ADD_REGION, ADD_PRICE_RANGE, ADD_FLAVOUR_MOOD } from './actionTypes';
+import {
+  ADD_REGION,
+  ADD_PRICE_RANGE,
+  ADD_FLAVOUR_MOOD,
+  CLEAR,
+} from './actionTypes';
 
 //TODO: need a screen for if the selection doesn't result in anything (i.e. they select specifics from all 3 categories and there isn't a match that meets the 3 characteristics); can have a tip to start broader, maybe with region and price or just flavor
 
@@ -29,6 +34,9 @@ export function criteriaReducer(criteriaState, action) {
     case ADD_FLAVOUR_MOOD:
       console.log('ADD_FLAVOUR_MOOD', { payload });
       return { ...criteriaState, flavourMood: payload };
+    case CLEAR:
+      console.log('ADD_FLAVOUR_MOOD', { payload });
+      return initialCriteriaState;
     default:
       return criteriaState;
   }
@@ -76,6 +84,7 @@ function App() {
       setFetchUrl(...(fetchUrl + `=${flavourMood}&`));
     }
     //TODO: FETCH HERE!
+    criteriaDispatch({ type: CLEAR });
     setShowWhisky(true);
   }
 
