@@ -19,18 +19,11 @@
   padding-top: 1.2vh;
 }
 
-#region {
-}
-
-#priceRange {
-}
-
 #tastingNotesHeader {
   margin: 0;
 }
 
 #tastingNotesList {
   margin: 0;
-  padding-top: 1.2vh;
-  padding-bottom: ;
+  padding: 1.2vh;
 }
