@@ -16,21 +16,21 @@ const apiUrl = 'https://evening-citadel-85778.herokuapp.com/';
 //initial state for fetchCriteria reducer
 const initialCriteriaState = { region: '', priceRange: '', flavourMood: '' };
 
-export function fetchCriteriaReducer(CriteriaState, action) {
-  //FIXME: Need to finish the action types!
-  const { type } = action;
+//reducer function that picks up the values selected for each dropdown:
+export function criteriaReducer(criteriaState, action) {
+  const { type, payload } = action;
   switch (type) {
     case ADD_REGION:
-      console.log('ADD_REGION');
-      return;
+      console.log('ADD_REGION', { payload });
+      return { ...criteriaState, region: payload };
     case ADD_PRICE_RANGE:
-      console.log('ADD_PRICE_RANGE');
-      return;
+      console.log('ADD_PRICE_RANGE', { payload });
+      return { ...criteriaState, priceRange: payload };
     case ADD_FLAVOUR_MOOD:
-      console.log('ADD_FLAVOUR_MOOD');
-      return;
+      console.log('ADD_FLAVOUR_MOOD', { payload });
+      return { ...criteriaState, flavorMood: payload };
     default:
-      return CriteriaState;
+      return criteriaState;
   }
 }
 
@@ -45,8 +45,8 @@ function App() {
   const [fetchUrl, setFetchUrl] = useState('shoot/?');
 
   //reducer that populates fetch for whisky matching criteria:
-  const [CriteriaState, dispatch] = useReducer(
-    fetchCriteriaReducer,
+  const [criteriaState, criteriaDispatch] = useReducer(
+    criteriaReducer,
     initialCriteriaState
   );
 
@@ -63,6 +63,7 @@ function App() {
   }, []);
 
   function handleGlassButtonPress() {
+    //TODO: take the 1-3 bits from dropdown reducer state and add their value to the fetch url state (along w/ = and &) - will prob need if statement/switch/etc.; need to check if each one is present, and if so, add its value to the url
     //TODO: FETCH HERE!
     setShowWhisky(true);
   }
@@ -81,7 +82,10 @@ function App() {
             Muddled over malts? Boggled by barley? Simply set one or more of the
             particulars below and tap the glass for whisky wisdom.
           </h3>
-          <Dropdowns />
+          <Dropdowns
+            criteriaDispatch={criteriaDispatch}
+            criteriaState={criteriaState}
+          />
           <GlassButton handleClick={handleGlassButtonPress} />
           <RandomFact fact={fact} />
         </>

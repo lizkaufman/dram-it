@@ -1,5 +1,10 @@
 import React from 'react';
 import css from './dropdowns.module.css';
+import {
+  ADD_REGION,
+  ADD_PRICE_RANGE,
+  ADD_FLAVOUR_MOOD,
+} from '../App/actionTypes';
 
 const flavorNames = [
   'caramel',
@@ -46,12 +51,36 @@ const flavorNames = [
   'lingering',
 ];
 
-function Dropdowns() {
+function Dropdowns({ criteriaDispatch, criteriaState }) {
+  function handleChange(event) {
+    console.log(event.target.name, event.target.value);
+    const name = event.target.name;
+    const value = event.target.value;
+    switch (name) {
+      case 'region':
+        criteriaDispatch({ type: ADD_REGION, payload: value });
+        break;
+      case 'priceRange':
+        criteriaDispatch({ type: ADD_PRICE_RANGE, payload: value });
+        break;
+      case 'flavourMood':
+        criteriaDispatch({ type: ADD_FLAVOUR_MOOD, payload: value });
+        break;
+      default:
+        return;
+    }
+  }
+
   return (
     <div id={css.dropdowns}>
       <label>
         <span className={css.dropdownLabel}>Region: </span>
-        <select className={css.dropdownSelector}>
+        <select
+          onChange={handleChange}
+          className={css.dropdownSelector}
+          name="region"
+          value={criteriaState.region}
+        >
           <option value=""></option>
           <option value="highlands">Highlands</option>
           <option value="island">Island</option>
@@ -69,7 +98,13 @@ function Dropdowns() {
 
       <label>
         <span className={css.dropdownLabel}>Price range: </span>
-        <select className={css.dropdownSelector} id={css.priceSelector}>
+        <select
+          onChange={handleChange}
+          className={css.dropdownSelector}
+          id={css.priceSelector}
+          name="priceRange"
+          value={criteriaState.priceRange}
+        >
           <option value=""></option>
           <option value="$">£</option>
           <option value="$$">££</option>
@@ -79,7 +114,12 @@ function Dropdowns() {
 
       <label>
         <span className={css.dropdownLabel}>Flavour mood: </span>
-        <select className={css.dropdownSelector}>
+        <select
+          onChange={handleChange}
+          className={css.dropdownSelector}
+          name="flavourMood"
+          value={criteriaState.flavourMood}
+        >
           <option value=""></option>
           {flavorNames.sort().map((flavor) => (
             <option value={flavor} key={flavor}>
