@@ -41,6 +41,9 @@ function App() {
   //state that manages whether the initial screen w/ dropdowns shows or the results screen:
   const [showWhisky, setShowWhisky] = useState(false);
 
+  //state to hold the fact:
+  const [fact, setFact] = useState('');
+
   //reducer that populates fetch for whisky matching criteria:
   const [fetchCriteriaState, dispatch] = useReducer(
     fetchCriteriaReducer,
@@ -56,8 +59,8 @@ function App() {
       })
       .then((data) => {
         console.log(data);
-        //get fact out of returned object
-        //set fact state w/ resulting fact
+        const factObj = data;
+        setFact(factObj['results'][0]['text']);
       });
   }, []);
 
@@ -82,7 +85,7 @@ function App() {
           </h3>
           <Dropdowns />
           <GlassButton handleClick={handleGlassButtonPress} />
-          <RandomFact />
+          <RandomFact fact={fact} />
         </>
       ) : (
         <>
