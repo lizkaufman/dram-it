@@ -28,7 +28,7 @@ export function criteriaReducer(criteriaState, action) {
       return { ...criteriaState, priceRange: payload };
     case ADD_FLAVOUR_MOOD:
       console.log('ADD_FLAVOUR_MOOD', { payload });
-      return { ...criteriaState, flavorMood: payload };
+      return { ...criteriaState, flavourMood: payload };
     default:
       return criteriaState;
   }
