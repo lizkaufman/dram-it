@@ -14,26 +14,23 @@ import { ADD_REGION, ADD_PRICE_RANGE, ADD_FLAVOUR_MOOD } from './actionTypes';
 const apiUrl = 'https://evening-citadel-85778.herokuapp.com/';
 
 //initial state for fetchCriteria reducer
-const initialFetchCriteriaState = 'shoot/?';
+const initialCriteriaState = { region: '', priceRange: '', flavourMood: '' };
 
-export function fetchCriteriaReducer(fetchCriteriaState, action) {
+export function fetchCriteriaReducer(CriteriaState, action) {
   //FIXME: Need to finish the action types!
   const { type } = action;
   switch (type) {
     case ADD_REGION:
-      //TODO: add region=x&
       console.log('ADD_REGION');
       return;
     case ADD_PRICE_RANGE:
-      //TODO: add price=x&
       console.log('ADD_PRICE_RANGE');
       return;
     case ADD_FLAVOUR_MOOD:
-      //TODO: add tags=x&
       console.log('ADD_FLAVOUR_MOOD');
       return;
     default:
-      return fetchCriteriaState;
+      return CriteriaState;
   }
 }
 
@@ -44,10 +41,13 @@ function App() {
   //state to hold the fact:
   const [fact, setFact] = useState('');
 
+  //state to hold the fetch url:
+  const [fetchUrl, setFetchUrl] = useState('shoot/?');
+
   //reducer that populates fetch for whisky matching criteria:
-  const [fetchCriteriaState, dispatch] = useReducer(
+  const [CriteriaState, dispatch] = useReducer(
     fetchCriteriaReducer,
-    initialFetchCriteriaState
+    initialCriteriaState
   );
 
   //fetches the random fact:
