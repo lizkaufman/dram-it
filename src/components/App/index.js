@@ -70,21 +70,29 @@ function App() {
   }, []);
 
   function handleGlassButtonPress() {
-    //TODO: take the 1-3 bits from dropdown reducer state and add their value to the fetch url state (along w/ = and &) - will prob need if statement/switch/etc.; need to check if each one is present, and if so, add its value to the url
+    //populate fetchUrl state:
     const { region, priceRange, flavourMood } = criteriaState;
     if (region) {
       console.log('button pressed', region);
-      setFetchUrl(...(fetchUrl + `region=${region}&`));
+      setFetchUrl(fetchUrl + `region=${region}&`);
     }
     if (priceRange) {
       console.log('button pressed', priceRange);
-      setFetchUrl(...(fetchUrl + `price=${priceRange}&`));
+      setFetchUrl(fetchUrl + `price=${priceRange}&`);
     }
     if (flavourMood) {
       console.log('button pressed', flavourMood);
-      setFetchUrl(...(fetchUrl + `tags=${flavourMood}&`));
+      setFetchUrl(fetchUrl + `tags=${flavourMood}&`);
     }
-    //TODO: FETCH HERE!
+    //fetch using fetchUrl state:
+    fetch(`${apiUrl}${fetchUrl}`)
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        console.log({ fetchUrl });
+        console.log(data);
+      });
     //TODO: logic to pick a random one out of the results
     //TODO: trigger separate messages for blank dropdowns or blank results (might need to use a state at this level and then pass it down to the whisky rec component to actualy render the messages!)
     criteriaDispatch({ type: CLEAR }); //clears dropdowns
