@@ -2,7 +2,7 @@ import React from 'react';
 
 import css from './whiskyRecommendation.module.css';
 
-function WhiskyRecommendation() {
+function WhiskyRecommendation({ whiskyResult }) {
   return (
     <div id={css.whiskyRecommendation}>
       <h4 className={css.infoSection}>Whisky Name</h4>

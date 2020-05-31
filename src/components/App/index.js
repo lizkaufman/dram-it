@@ -7,9 +7,15 @@ import GlassButton from '../GlassButton';
 import RandomFact from '../RandomFact';
 import WhiskyRecommendation from '../WhiskyRecommendation';
 
-import { ADD_REGION, ADD_PRICE_RANGE, ADD_FLAVOUR_MOOD } from './actionTypes';
+import {
+  ADD_REGION,
+  ADD_PRICE_RANGE,
+  ADD_FLAVOUR_MOOD,
+  CLEAR,
+} from './actionTypes';
 
 //TODO: need a screen for if the selection doesn't result in anything (i.e. they select specifics from all 3 categories and there isn't a match that meets the 3 characteristics); can have a tip to start broader, maybe with region and price or just flavor
+//TODO: also need an error message for if the user doesn't select anything in the dropdowns and then tries to click the glass!
 
 const apiUrl = 'https://evening-citadel-85778.herokuapp.com/';
 
@@ -17,7 +23,7 @@ const apiUrl = 'https://evening-citadel-85778.herokuapp.com/';
 const initialCriteriaState = { region: '', priceRange: '', flavourMood: '' };
 
 //reducer function that picks up the values selected for each dropdown:
-export function criteriaReducer(criteriaState, action) {
+function criteriaReducer(criteriaState, action) {
   const { type, payload } = action;
   switch (type) {
     case ADD_REGION:
@@ -29,6 +35,9 @@ export function criteriaReducer(criteriaState, action) {
     case ADD_FLAVOUR_MOOD:
       console.log('ADD_FLAVOUR_MOOD', { payload });
       return { ...criteriaState, flavourMood: payload };
+    case CLEAR:
+      console.log('ADD_FLAVOUR_MOOD', { payload });
+      return initialCriteriaState;
     default:
       return criteriaState;
   }
@@ -37,12 +46,12 @@ export function criteriaReducer(criteriaState, action) {
 function App() {
   //state that manages whether the initial screen w/ dropdowns shows or the results screen:
   const [showWhisky, setShowWhisky] = useState(false);
-
   //state to hold the fact:
   const [fact, setFact] = useState('');
-
   //state to hold the fetch url:
   const [fetchUrl, setFetchUrl] = useState('shoot/?');
+  //state to hold chosen whisky:
+  const [whiskyResult, setWhiskyResult] = useState({});
 
   //reducer that populates fetch for whisky matching criteria:
   const [criteriaState, criteriaDispatch] = useReducer(
@@ -59,13 +68,49 @@ function App() {
       .then((data) => {
         const factObj = data;
         setFact(factObj['results'][0]['text']);
+        // setFetchUrl(fetchUrl + `test`); <- ✅ setFetchUrl works here... so why doesn't it work in the handleGlassPress function?
       });
   }, []);
 
   function handleGlassButtonPress() {
-    //TODO: take the 1-3 bits from dropdown reducer state and add their value to the fetch url state (along w/ = and &) - will prob need if statement/switch/etc.; need to check if each one is present, and if so, add its value to the url
-    //TODO: FETCH HERE!
-    setShowWhisky(true);
+    //populate fetchUrl state:
+    //FIXME: problem isolated to setFetchUrl not working in this function
+    // setFetchUrl('test'); <-didn't work here either
+    const { region, priceRange, flavourMood } = criteriaState; //✅
+    console.log(criteriaState); //✅
+    if (region) {
+      console.log('button pressed', region); //✅
+      setFetchUrl(fetchUrl + `region=${region}&`);
+      console.log(fetchUrl);
+    }
+    if (priceRange) {
+      console.log('button pressed', priceRange); //✅
+      setFetchUrl(fetchUrl + `price=${priceRange}&`);
+      console.log(fetchUrl);
+    }
+    if (flavourMood) {
+      console.log('button pressed', flavourMood); //✅
+      setFetchUrl(fetchUrl + `tags=${flavourMood}&`);
+      console.log(fetchUrl);
+    }
+    //fetch using fetchUrl state:
+    fetch(`${apiUrl}${fetchUrl}`)
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        console.log({ fetchUrl });
+        const pickedResult =
+          data['results'][Math.floor(Math.random() * data['results'].length)];
+        console.log({ pickedResult });
+        setWhiskyResult(pickedResult);
+      });
+    //TODO: logic to pick a random one out of the results, save it to a state, and pass this state to whisky rec component
+
+    //TODO: trigger separate messages for blank results (might need to use a state at this level and then pass it down to the whisky rec component to actualy render the messages!)
+    criteriaDispatch({ type: CLEAR }); //clears dropdowns
+    setFetchUrl('shoot/?'); //clears fetchUrl
+    setShowWhisky(true); //shows result
   }
 
   function handleTryAgain() {
@@ -94,7 +139,7 @@ function App() {
           <h3 className="subhead">
             Our slightly swaying sages have pondered your request and suggest:
           </h3>
-          <WhiskyRecommendation />
+          <WhiskyRecommendation whiskyResult={whiskyResult} />
           <h3 className="subhead" id="slainte">
             Sláinte!
           </h3>
