@@ -50,8 +50,8 @@ function App() {
   const [fact, setFact] = useState('');
   //state to hold the fetch url:
   const [fetchUrl, setFetchUrl] = useState('shoot/?');
-  //state to hold fetch results (whiskies):
-  const [whiskyResults, setWhiskyResults] = useState([]);
+  //state to hold chosen whisky:
+  const [whiskyResult, setWhiskyResult] = useState({});
 
   //reducer that populates fetch for whisky matching criteria:
   const [criteriaState, criteriaDispatch] = useReducer(
@@ -68,7 +68,7 @@ function App() {
       .then((data) => {
         const factObj = data;
         setFact(factObj['results'][0]['text']);
-        // setFetchUrl(fetchUrl + `test`); <-setFetchUrl works here... so why doesn't it work in the handleGlassPress function?
+        // setFetchUrl(fetchUrl + `test`); <- ✅ setFetchUrl works here... so why doesn't it work in the handleGlassPress function?
       });
   }, []);
 
@@ -100,11 +100,13 @@ function App() {
       })
       .then((data) => {
         console.log({ fetchUrl });
-        const resultsObj = data;
-        console.log(resultsObj['results']);
-        setWhiskyResults(resultsObj['results']);
+        const pickedResult =
+          data['results'][Math.floor(Math.random() * data['results'].length)];
+        console.log({ pickedResult });
+        setWhiskyResult(pickedResult);
       });
     //TODO: logic to pick a random one out of the results, save it to a state, and pass this state to whisky rec component
+
     //TODO: trigger separate messages for blank results (might need to use a state at this level and then pass it down to the whisky rec component to actualy render the messages!)
     criteriaDispatch({ type: CLEAR }); //clears dropdowns
     setFetchUrl('shoot/?'); //clears fetchUrl
