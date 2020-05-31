@@ -50,6 +50,8 @@ function App() {
   const [fact, setFact] = useState('');
   //state to hold the fetch url:
   const [fetchUrl, setFetchUrl] = useState('shoot/?');
+  //state to hold fetch results (whiskies):
+  const [whiskyResults, setWhiskyResults] = useState([]);
 
   //reducer that populates fetch for whisky matching criteria:
   const [criteriaState, criteriaDispatch] = useReducer(
@@ -66,6 +68,7 @@ function App() {
       .then((data) => {
         const factObj = data;
         setFact(factObj['results'][0]['text']);
+        // setFetchUrl(fetchUrl + `test`); <-setFetchUrl works here... so why doesn't it work in the handleGlassPress function?
       });
   }, []);
 
@@ -73,7 +76,7 @@ function App() {
     //populate fetchUrl state:
     //FIXME: problem isolated to setFetchUrl not working in this function
     // setFetchUrl('test'); <-didn't work here either
-    const { region, priceRange, flavourMood } = criteriaState;
+    const { region, priceRange, flavourMood } = criteriaState; //✅
     console.log(criteriaState); //✅
     if (region) {
       console.log('button pressed', region); //✅
@@ -97,10 +100,12 @@ function App() {
       })
       .then((data) => {
         console.log({ fetchUrl });
-        console.log(data);
+        const resultsObj = data;
+        console.log(resultsObj['results']);
+        setWhiskyResults(resultsObj['results']);
       });
     //TODO: logic to pick a random one out of the results, save it to a state, and pass this state to whisky rec component
-    //TODO: trigger separate messages for blank dropdowns or blank results (might need to use a state at this level and then pass it down to the whisky rec component to actualy render the messages!)
+    //TODO: trigger separate messages for blank results (might need to use a state at this level and then pass it down to the whisky rec component to actualy render the messages!)
     criteriaDispatch({ type: CLEAR }); //clears dropdowns
     setFetchUrl('shoot/?'); //clears fetchUrl
     setShowWhisky(true); //shows result
