@@ -2,14 +2,21 @@ import React, { useEffect, useState } from 'react';
 
 import css from './whiskyRecommendation.module.css';
 
-function WhiskyRecommendation({ whiskyResult }) {
+function WhiskyRecommendation({ whiskyResult, priceRange }) {
   //state to hold priceRange in £ (comes from API in $):
   const [poundsPriceRange, setPoundsPriceRange] = useState('test');
   //state to hold tag array:
   const [flavours, setFlavours] = useState(['test', 'test2', 'test3']);
 
   useEffect(() => {
-    //TODO: convert $ in whiskyResult to £
+    //convert priceRange from $ to £ for display:
+    console.log({ priceRange });
+    setPoundsPriceRange(
+      priceRange
+        .split('')
+        .map(($) => '£')
+        .join('')
+    );
   }, [whiskyResult]);
 
   return (

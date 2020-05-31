@@ -53,7 +53,7 @@ function App() {
   //state to hold chosen whisky:
   const [whiskyResult, setWhiskyResult] = useState({});
 
-  //reducer that populates fetch for whisky matching criteria:
+  //useReducer that populates fetch for whisky matching criteria:
   const [criteriaState, criteriaDispatch] = useReducer(
     criteriaReducer,
     initialCriteriaState
@@ -108,13 +108,13 @@ function App() {
     //TODO: logic to pick a random one out of the results, save it to a state, and pass this state to whisky rec component
 
     //TODO: trigger separate messages for blank results (might need to use a state at this level and then pass it down to the whisky rec component to actualy render the messages!)
-    criteriaDispatch({ type: CLEAR }); //clears dropdowns
+    // criteriaDispatch({ type: CLEAR }); //clears dropdowns
     setFetchUrl('shoot/?'); //clears fetchUrl
     setShowWhisky(true); //shows result
   }
 
   function handleTryAgain() {
-    //TODO: reset dropdowns state too
+    criteriaDispatch({ type: CLEAR }); //clears dropdowns
     setShowWhisky(false);
   }
 
@@ -139,7 +139,10 @@ function App() {
           <h3 className="subhead">
             Our slightly swaying sages have pondered your request and suggest:
           </h3>
-          <WhiskyRecommendation whiskyResult={whiskyResult} />
+          <WhiskyRecommendation
+            whiskyResult={whiskyResult}
+            priceRange={criteriaState.priceRange}
+          />
           <h3 className="subhead" id="slainte">
             Sláinte!
           </h3>
