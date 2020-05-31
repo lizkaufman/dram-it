@@ -23,7 +23,7 @@ const apiUrl = 'https://evening-citadel-85778.herokuapp.com/';
 const initialCriteriaState = { region: '', priceRange: '', flavourMood: '' };
 
 //reducer function that picks up the values selected for each dropdown:
-export function criteriaReducer(criteriaState, action) {
+function criteriaReducer(criteriaState, action) {
   const { type, payload } = action;
   switch (type) {
     case ADD_REGION:
@@ -71,20 +71,22 @@ function App() {
 
   function handleGlassButtonPress() {
     //populate fetchUrl state:
-    //FIXME: keys not getting destructured out of criteriaState, so not even going into if block (no variables lighting up)
+    //FIXME: problem isolated to setFetchUrl not working in this function
+    // setFetchUrl('test'); <-didn't work here either
     const { region, priceRange, flavourMood } = criteriaState;
+    console.log(criteriaState); //✅
     if (region) {
-      console.log('button pressed', region);
+      console.log('button pressed', region); //✅
       setFetchUrl(fetchUrl + `region=${region}&`);
       console.log(fetchUrl);
     }
     if (priceRange) {
-      console.log('button pressed', priceRange);
+      console.log('button pressed', priceRange); //✅
       setFetchUrl(fetchUrl + `price=${priceRange}&`);
       console.log(fetchUrl);
     }
     if (flavourMood) {
-      console.log('button pressed', flavourMood);
+      console.log('button pressed', flavourMood); //✅
       setFetchUrl(fetchUrl + `tags=${flavourMood}&`);
       console.log(fetchUrl);
     }
