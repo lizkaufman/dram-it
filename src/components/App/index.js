@@ -71,18 +71,22 @@ function App() {
 
   function handleGlassButtonPress() {
     //populate fetchUrl state:
+    //FIXME: keys not getting destructured out of criteriaState, so not even going into if block (no variables lighting up)
     const { region, priceRange, flavourMood } = criteriaState;
     if (region) {
       console.log('button pressed', region);
       setFetchUrl(fetchUrl + `region=${region}&`);
+      console.log(fetchUrl);
     }
     if (priceRange) {
       console.log('button pressed', priceRange);
       setFetchUrl(fetchUrl + `price=${priceRange}&`);
+      console.log(fetchUrl);
     }
     if (flavourMood) {
       console.log('button pressed', flavourMood);
       setFetchUrl(fetchUrl + `tags=${flavourMood}&`);
+      console.log(fetchUrl);
     }
     //fetch using fetchUrl state:
     fetch(`${apiUrl}${fetchUrl}`)
@@ -93,7 +97,7 @@ function App() {
         console.log({ fetchUrl });
         console.log(data);
       });
-    //TODO: logic to pick a random one out of the results
+    //TODO: logic to pick a random one out of the results, save it to a state, and pass this state to whisky rec component
     //TODO: trigger separate messages for blank dropdowns or blank results (might need to use a state at this level and then pass it down to the whisky rec component to actualy render the messages!)
     criteriaDispatch({ type: CLEAR }); //clears dropdowns
     setFetchUrl('shoot/?'); //clears fetchUrl
