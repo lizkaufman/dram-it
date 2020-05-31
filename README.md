@@ -2,6 +2,15 @@
 
 Whisky suggestion app using the slightly dodgy and neglected API here: https://evening-citadel-85778.herokuapp.com/docs/api-docs
 
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## My main initial goals with the MVP version in regular React:
+- Practice using Figma and sharpening my design skills, properly wireframing/designing the whole app before I started to build. (View my design [here](https://www.figma.com/file/ibQI54URpxdEZwoXxjYVdI/Dram-It?node-id=4%3A23))
+- Keep practicing working with APIs and objects/data structures/JSONs.
+- Keep my React skills from going rusty (for example, more complicated hooks like useReducer).
+
+## Future plans:
+
 If this API plays nicely for something small like this, I might expand this into a React Native app and add additional features.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Also, I'd quite like to add functionality where a user can save whisky suggestions they've received to a list they can pull up when they're shopping. This could either be via a proper back end with login or local storage.
