@@ -139,7 +139,7 @@ function App() {
           <h3 className="subhead">
             Our slightly swaying sages have pondered your request and suggest:
           </h3>
-          <WhiskyRecommendation />
+          <WhiskyRecommendation whiskyResult={whiskyResult} />
           <h3 className="subhead" id="slainte">
             Sláinte!
           </h3>
