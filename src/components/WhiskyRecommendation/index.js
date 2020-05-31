@@ -10,13 +10,18 @@ function WhiskyRecommendation({ whiskyResult, priceRange }) {
 
   useEffect(() => {
     //convert priceRange from $ to £ for display:
-    console.log({ priceRange });
     setPoundsPriceRange(
       priceRange
         .split('')
         .map(($) => '£')
         .join('')
     );
+  }, [whiskyResult]);
+
+  useEffect(() => {
+    //get tags out into an array:
+    const tagsArray = whiskyResult.tags;
+    console.log(tagsArray, { type: typeof tagsArray }); //FIXME: tagsArray is coming thru as empty array but type object ... ?!?!
   }, [whiskyResult]);
 
   return (
