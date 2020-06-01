@@ -103,8 +103,6 @@ function App() {
 
   function handleGlassButtonPress() {
     //populate fetchUrl state:
-    //FIXME: problem isolated to setFetchUrl not working in this function
-    // setFetchUrl('test'); <-didn't work here either
     const { region, priceRange, flavourMood } = criteriaState; //✅
     console.log(criteriaState); //✅
 
