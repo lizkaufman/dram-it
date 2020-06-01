@@ -88,8 +88,9 @@ function App() {
           data['results'][Math.floor(Math.random() * data['results'].length)];
         console.log({ pickedResult });
         setWhiskyResult(pickedResult);
-        setWhiskyTags(pickedResult.tags.map((tagObj) => tagObj.title));
-        setPrice(pickedResult.price);
+        pickedResult &&
+          setWhiskyTags(pickedResult.tags.map((tagObj) => tagObj.title));
+        pickedResult && setPrice(pickedResult.price);
       });
   }, [fetchUrl]);
 
