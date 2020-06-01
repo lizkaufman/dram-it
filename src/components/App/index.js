@@ -64,6 +64,8 @@ function App() {
   const [noResults, setNoResults] = useState(false);
   //state to hold tags for chosen whisky:
   const [whiskyTags, setWhiskyTags] = useState([]);
+  //state to hold price for chosen whisky:
+  const [price, setPrice] = useState(0);
 
   //useReducer that populates fetch for whisky matching criteria:
   const [criteriaState, criteriaDispatch] = useReducer(
@@ -98,6 +100,7 @@ function App() {
           ? setWhiskyResult(pickedResult)
           : setNoResults(true);
         setWhiskyTags(pickedResult.tags.map((tagObj) => tagObj.title));
+        setPrice(pickedResult.price);
       });
   }, [fetchUrl]);
 
@@ -150,7 +153,7 @@ function App() {
           <>
             <h3 className="subhead">
               Muddled over malts? Boggled by barley? Simply set one or more of
-              the particulars below and tap the glass for whisky wisdom.
+              the particulars below and tap the glass for guidance.
             </h3>
             <Dropdowns
               criteriaDispatch={criteriaDispatch}
@@ -166,7 +169,7 @@ function App() {
             </h3>
             <WhiskyRecommendation
               whiskyResult={whiskyResult}
-              priceRange={criteriaState.priceRange}
+              priceRange={price}
               tags={whiskyTags}
               handleTryAgain={handleTryAgain}
             />
@@ -186,6 +189,19 @@ function App() {
       ) : (
         <NoRecTryAgain handleTryAgain={handleTryAgain} />
       )}
+      <footer>
+        <p id="footerText">
+          Made by Liz Kaufman.{' '}
+          <a
+            href="https://github.com/lizkaufman"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {' '}
+            View Github repo here.
+          </a>
+        </p>
+      </footer>
     </div>
   );
 }

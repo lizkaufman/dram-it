@@ -11,3 +11,7 @@
 #buttonImg:hover {
   cursor: pointer;
 }
+
+#buttonImg:active {
+  background-color: var(--box-background);
+}
