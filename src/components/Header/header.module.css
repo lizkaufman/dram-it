@@ -5,13 +5,14 @@
   align-items: center;
   margin: 0 auto;
   width: 100vw;
-  padding-top: 2vh;
+  padding-top: 4vh;
+  padding-bottom: 2vh;
 }
 
 #headerImg {
   width: auto;
   height: 7vh;
-  padding: 2vh;
+  padding-right: 2vh;
   margin-right: 2vw;
 }
 
