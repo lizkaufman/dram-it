@@ -15,7 +15,6 @@ import {
   CLEAR,
 } from './actionTypes';
 
-//TODO: need a screen for if the selection doesn't result in anything (i.e. they select specifics from all 3 categories and there isn't a match that meets the 3 characteristics); can have a tip to start broader, maybe with region and price or just flavor
 //TODO: also need an error message for if the user doesn't select anything in the dropdowns and then tries to click the glass!
 
 const apiUrl = 'https://evening-citadel-85778.herokuapp.com/';
@@ -58,7 +57,7 @@ function App() {
   //state to hold the fact:
   const [fact, setFact] = useState('');
   //state to hold the fetch url:
-  const [fetchUrl, setFetchUrl] = useState('shoot/?');
+  const [fetchUrl, setFetchUrl] = useState('');
   //state to hold chosen whisky:
   const [whiskyResult, setWhiskyResult] = useState({});
   //state that holds if search results were empty:
@@ -85,28 +84,7 @@ function App() {
       });
   }, []);
 
-  function handleGlassButtonPress() {
-    //populate fetchUrl state:
-    //FIXME: problem isolated to setFetchUrl not working in this function
-    // setFetchUrl('test'); <-didn't work here either
-    const { region, priceRange, flavourMood } = criteriaState; //✅
-    console.log(criteriaState); //✅
-    if (region) {
-      console.log('button pressed', region); //✅
-      setFetchUrl(fetchUrl + `region=${region}&`);
-      console.log(fetchUrl);
-    }
-    if (priceRange) {
-      console.log('button pressed', priceRange); //✅
-      setFetchUrl(fetchUrl + `price=${priceRange}&`);
-      console.log(fetchUrl);
-    }
-    if (flavourMood) {
-      console.log('button pressed', flavourMood); //✅
-      setFetchUrl(fetchUrl + `tags=${flavourMood}&`);
-      console.log(fetchUrl);
-    }
-    //fetch using fetchUrl state:
+  useEffect(() => {
     fetch(`${apiUrl}${fetchUrl}`)
       .then((response) => {
         return response.json();
@@ -121,16 +99,45 @@ function App() {
           : setNoResults(true);
         setWhiskyTags(pickedResult.tags.map((tagObj) => tagObj.title));
       });
-    //TODO: logic to pick a random one out of the results, save it to a state, and pass this state to whisky rec component
+  }, [fetchUrl]);
 
-    //TODO: trigger separate messages for blank results (might need to use a state at this level and then pass it down to the whisky rec component to actualy render the messages!)
-    // criteriaDispatch({ type: CLEAR }); //clears dropdowns
-    setFetchUrl('shoot/?'); //clears fetchUrl
+  function handleGlassButtonPress() {
+    //populate fetchUrl state:
+    const { region, priceRange, flavourMood } = criteriaState; //✅
+    console.log(criteriaState); //✅
+
+    let addToUrl = 'shoot/?';
+
+    if (region) {
+      console.log({ region }); //✅
+      // setFetchUrl(fetchUrl + `region=${region}&`);
+      // console.log({ fetchUrl });
+      addToUrl = addToUrl + `region=${region}&`;
+      console.log({ addToUrl });
+    }
+    if (priceRange) {
+      console.log({ priceRange }); //✅
+      // setFetchUrl(fetchUrl + `price=${priceRange}&`);
+      // console.log({ fetchUrl });
+      addToUrl = addToUrl + `priceRange=${priceRange}&`;
+      console.log({ addToUrl });
+    }
+    if (flavourMood) {
+      console.log({ flavourMood }); //✅
+      // setFetchUrl(fetchUrl + `tags=${flavourMood}&`);
+      // console.log({ fetchUrl });
+      addToUrl = addToUrl + `tags=${flavourMood}&`;
+      console.log({ addToUrl });
+    }
+
+    setFetchUrl(addToUrl);
+
     setShowWhisky(true); //shows result
   }
 
   function handleTryAgain() {
     criteriaDispatch({ type: CLEAR }); //clears dropdowns
+    setFetchUrl('shoot/?'); //clears fetchUrl
     setShowWhisky(false);
     setNoResults(false);
   }
