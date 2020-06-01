@@ -186,6 +186,19 @@ function App() {
       ) : (
         <NoRecTryAgain handleTryAgain={handleTryAgain} />
       )}
+      <footer>
+        <p id="footerText">
+          Made by Liz Kaufman.{' '}
+          <a
+            href="https://github.com/lizkaufman"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {' '}
+            View Github repo here.
+          </a>
+        </p>
+      </footer>
     </div>
   );
 }
