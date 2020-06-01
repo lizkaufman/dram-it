@@ -34,11 +34,18 @@ function WhiskyRecommendation({ whiskyResult, priceRange, tags }) {
       <div className={css.infoSection}>
         <h4 id={css.tastingNotesHeader}>Tasting notes include:</h4>
         <p id={css.tastingNotesList}>
-          {tags.map((flavour) => (
-            <span className={css.flavour} key={flavour}>
-              {flavour}{' '}
-            </span>
-          ))}
+          {tags.map((flavour, i) =>
+            i < tags.length - 1 ? (
+              <span className={css.flavour} key={flavour}>
+                {flavour}
+                {', '}
+              </span>
+            ) : (
+              <span className={css.flavour} key={flavour}>
+                {flavour}
+              </span>
+            )
+          )}
         </p>
       </div>
     </div>
