@@ -15,7 +15,6 @@ import {
   CLEAR,
 } from './actionTypes';
 
-//TODO: need a screen for if the selection doesn't result in anything (i.e. they select specifics from all 3 categories and there isn't a match that meets the 3 characteristics); can have a tip to start broader, maybe with region and price or just flavor
 //TODO: also need an error message for if the user doesn't select anything in the dropdowns and then tries to click the glass!
 
 const apiUrl = 'https://evening-citadel-85778.herokuapp.com/';
@@ -107,6 +106,12 @@ function App() {
       console.log(fetchUrl);
     }
     //fetch using fetchUrl state:
+    //FIXME: un-comment out this alert ternary when fetchUrl is working!
+    // fetchUrl === 'shoot/?'
+    //   ? alert(
+    //       `Please select an option from at least one of the dropdowns. We aren't complete mind readers, you know!`
+    //     )
+    //   :
     fetch(`${apiUrl}${fetchUrl}`)
       .then((response) => {
         return response.json();
@@ -121,16 +126,12 @@ function App() {
           : setNoResults(true);
         setWhiskyTags(pickedResult.tags.map((tagObj) => tagObj.title));
       });
-    //TODO: logic to pick a random one out of the results, save it to a state, and pass this state to whisky rec component
-
-    //TODO: trigger separate messages for blank results (might need to use a state at this level and then pass it down to the whisky rec component to actualy render the messages!)
-    // criteriaDispatch({ type: CLEAR }); //clears dropdowns
-    setFetchUrl('shoot/?'); //clears fetchUrl
     setShowWhisky(true); //shows result
   }
 
   function handleTryAgain() {
     criteriaDispatch({ type: CLEAR }); //clears dropdowns
+    setFetchUrl('shoot/?'); //clears fetchUrl
     setShowWhisky(false);
     setNoResults(false);
   }
