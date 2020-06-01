@@ -52,6 +52,8 @@ function App() {
   const [fetchUrl, setFetchUrl] = useState('shoot/?');
   //state to hold chosen whisky:
   const [whiskyResult, setWhiskyResult] = useState({});
+  //state to hold tags for chosen whisky:
+  const [whiskyTags, setWhiskyTags] = useState([]);
 
   //useReducer that populates fetch for whisky matching criteria:
   const [criteriaState, criteriaDispatch] = useReducer(
@@ -104,6 +106,7 @@ function App() {
           data['results'][Math.floor(Math.random() * data['results'].length)];
         console.log({ pickedResult });
         setWhiskyResult(pickedResult);
+        setWhiskyTags(pickedResult.tags.map((tagObj) => tagObj.title));
       });
     //TODO: logic to pick a random one out of the results, save it to a state, and pass this state to whisky rec component
 
@@ -142,6 +145,7 @@ function App() {
           <WhiskyRecommendation
             whiskyResult={whiskyResult}
             priceRange={criteriaState.priceRange}
+            tags={whiskyTags}
           />
           <h3 className="subhead" id="slainte">
             Sláinte!

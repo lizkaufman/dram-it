@@ -2,11 +2,10 @@ import React, { useEffect, useState } from 'react';
 
 import css from './whiskyRecommendation.module.css';
 
-function WhiskyRecommendation({ whiskyResult, priceRange }) {
+function WhiskyRecommendation({ whiskyResult, priceRange, tags }) {
   //state to hold priceRange in £ (comes from API in $):
   const [poundsPriceRange, setPoundsPriceRange] = useState('test');
   //state to hold tag array:
-  const [flavours, setFlavours] = useState(['test', 'test2', 'test3']);
 
   useEffect(() => {
     //convert priceRange from $ to £ for display:
@@ -16,12 +15,6 @@ function WhiskyRecommendation({ whiskyResult, priceRange }) {
         .map(($) => '£')
         .join('')
     );
-  }, [whiskyResult]);
-
-  useEffect(() => {
-    //get tags out into an array:
-    const tagsArray = whiskyResult.tags;
-    console.log(tagsArray, { type: typeof tagsArray }); //FIXME: tagsArray is coming thru as empty array but type object ... ?!?!
   }, [whiskyResult]);
 
   return (
@@ -41,9 +34,9 @@ function WhiskyRecommendation({ whiskyResult, priceRange }) {
       <div className={css.infoSection}>
         <h4 id={css.tastingNotesHeader}>Tasting notes include:</h4>
         <p id={css.tastingNotesList}>
-          {flavours.map((flavour) => (
+          {tags.map((flavour) => (
             <span className={css.flavour} key={flavour}>
-              flavour{' '}
+              {flavour}{' '}
             </span>
           ))}
         </p>
