@@ -2,7 +2,12 @@ import React, { useEffect, useState } from 'react';
 
 import css from './whiskyRecommendation.module.css';
 
-function WhiskyRecommendation({ whiskyResult, priceRange, tags }) {
+function WhiskyRecommendation({
+  whiskyResult,
+  priceRange,
+  tags,
+  handleTryAgain,
+}) {
   //state to hold priceRange in £ (comes from API in $):
   const [poundsPriceRange, setPoundsPriceRange] = useState('');
   //state to hold tag array:
@@ -18,7 +23,7 @@ function WhiskyRecommendation({ whiskyResult, priceRange, tags }) {
   }, [whiskyResult]);
 
   return (
-    <div id={css.whiskyRecommendation}>
+    <div className={css.whiskyRecommendation}>
       <h4 className={css.infoSection}>{whiskyResult.title}</h4>
       <img id={css.whiskyImg} src={whiskyResult.detail_img_url} alt="" />
       <h4 className={css.infoSection} id={css.region}>
