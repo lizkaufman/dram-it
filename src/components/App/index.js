@@ -177,7 +177,7 @@ function App() {
           </>
         )
       ) : (
-        <NoRecTryAgain />
+        <NoRecTryAgain handleTryAgain={handleTryAgain} />
       )}
     </div>
   );
