@@ -150,7 +150,7 @@ function App() {
           <>
             <h3 className="subhead">
               Muddled over malts? Boggled by barley? Simply set one or more of
-              the particulars below and tap the glass for whisky wisdom.
+              the particulars below and tap the glass for guidance.
             </h3>
             <Dropdowns
               criteriaDispatch={criteriaDispatch}
