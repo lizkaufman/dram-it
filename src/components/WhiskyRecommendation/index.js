@@ -2,24 +2,20 @@ import React, { useEffect, useState } from 'react';
 
 import css from './whiskyRecommendation.module.css';
 
-function WhiskyRecommendation({
-  whiskyResult,
-  priceRange,
-  tags,
-  handleTryAgain,
-}) {
+function WhiskyRecommendation({ whiskyResult, price, tags }) {
   //state to hold priceRange in £ (comes from API in $):
   const [poundsPriceRange, setPoundsPriceRange] = useState('');
   //state to hold tag array:
 
   useEffect(() => {
     //convert priceRange from $ to £ for display:
-    setPoundsPriceRange(
-      priceRange
-        .split('')
-        .map(($) => '£')
-        .join('')
-    );
+    if (price <= 40) {
+      setPoundsPriceRange('£');
+    } else if (price > 40 && price <= 75) {
+      setPoundsPriceRange('££');
+    } else {
+      setPoundsPriceRange('£££');
+    }
   }, [whiskyResult]);
 
   return (
