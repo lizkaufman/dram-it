@@ -57,7 +57,7 @@ function App() {
   //state to hold the fact:
   const [fact, setFact] = useState('');
   //state to hold the fetch url:
-  const [fetchUrl, setFetchUrl] = useState('shoot/?');
+  const [fetchUrl, setFetchUrl] = useState('');
   //state to hold chosen whisky:
   const [whiskyResult, setWhiskyResult] = useState({});
   //state that holds if search results were empty:
@@ -84,34 +84,7 @@ function App() {
       });
   }, []);
 
-  function handleGlassButtonPress() {
-    //populate fetchUrl state:
-    //FIXME: problem isolated to setFetchUrl not working in this function
-    // setFetchUrl('test'); <-didn't work here either
-    const { region, priceRange, flavourMood } = criteriaState; //✅
-    console.log(criteriaState); //✅
-    if (region) {
-      console.log('button pressed', region); //✅
-      setFetchUrl(fetchUrl + `region=${region}&`);
-      console.log(fetchUrl);
-    }
-    if (priceRange) {
-      console.log('button pressed', priceRange); //✅
-      setFetchUrl(fetchUrl + `price=${priceRange}&`);
-      console.log(fetchUrl);
-    }
-    if (flavourMood) {
-      console.log('button pressed', flavourMood); //✅
-      setFetchUrl(fetchUrl + `tags=${flavourMood}&`);
-      console.log(fetchUrl);
-    }
-    //fetch using fetchUrl state:
-    //FIXME: un-comment out this alert ternary when fetchUrl is working!
-    // fetchUrl === 'shoot/?'
-    //   ? alert(
-    //       `Please select an option from at least one of the dropdowns. We aren't complete mind readers, you know!`
-    //     )
-    //   :
+  useEffect(() => {
     fetch(`${apiUrl}${fetchUrl}`)
       .then((response) => {
         return response.json();
@@ -126,6 +99,41 @@ function App() {
           : setNoResults(true);
         setWhiskyTags(pickedResult.tags.map((tagObj) => tagObj.title));
       });
+  }, [fetchUrl]);
+
+  function handleGlassButtonPress() {
+    //populate fetchUrl state:
+    //FIXME: problem isolated to setFetchUrl not working in this function
+    // setFetchUrl('test'); <-didn't work here either
+    const { region, priceRange, flavourMood } = criteriaState; //✅
+    console.log(criteriaState); //✅
+
+    let addToUrl = 'shoot/?';
+
+    if (region) {
+      console.log({ region }); //✅
+      // setFetchUrl(fetchUrl + `region=${region}&`);
+      // console.log({ fetchUrl });
+      addToUrl = addToUrl + `region=${region}&`;
+      console.log({ addToUrl });
+    }
+    if (priceRange) {
+      console.log({ priceRange }); //✅
+      // setFetchUrl(fetchUrl + `price=${priceRange}&`);
+      // console.log({ fetchUrl });
+      addToUrl = addToUrl + `priceRange=${priceRange}&`;
+      console.log({ addToUrl });
+    }
+    if (flavourMood) {
+      console.log({ flavourMood }); //✅
+      // setFetchUrl(fetchUrl + `tags=${flavourMood}&`);
+      // console.log({ fetchUrl });
+      addToUrl = addToUrl + `tags=${flavourMood}&`;
+      console.log({ addToUrl });
+    }
+
+    setFetchUrl(addToUrl);
+
     setShowWhisky(true); //shows result
   }
 
