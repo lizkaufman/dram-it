@@ -4,7 +4,7 @@ import css from './whiskyRecommendation.module.css';
 
 function WhiskyRecommendation({ whiskyResult, priceRange, tags }) {
   //state to hold priceRange in £ (comes from API in $):
-  const [poundsPriceRange, setPoundsPriceRange] = useState('test');
+  const [poundsPriceRange, setPoundsPriceRange] = useState('');
   //state to hold tag array:
 
   useEffect(() => {
@@ -20,11 +20,7 @@ function WhiskyRecommendation({ whiskyResult, priceRange, tags }) {
   return (
     <div id={css.whiskyRecommendation}>
       <h4 className={css.infoSection}>{whiskyResult.title}</h4>
-      <img
-        id={css.whiskyImg}
-        src="https://www.lumaticimagery.com/img/placeholder-image-sq.png"
-        alt=""
-      />
+      <img id={css.whiskyImg} src={whiskyResult.detail_img_url} alt="" />
       <h4 className={css.infoSection} id={css.region}>
         Region: {whiskyResult.region}
       </h4>
