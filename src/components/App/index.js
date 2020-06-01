@@ -6,7 +6,6 @@ import Dropdowns from '../Dropdowns';
 import GlassButton from '../GlassButton';
 import RandomFact from '../RandomFact';
 import WhiskyRecommendation from '../WhiskyRecommendation';
-import NoRecTryAgain from '../WhiskyRecommendation/NoRecTryAgain';
 
 import {
   ADD_REGION,
@@ -18,14 +17,6 @@ import {
 //TODO: also need an error message for if the user doesn't select anything in the dropdowns and then tries to click the glass!
 
 const apiUrl = 'https://evening-citadel-85778.herokuapp.com/';
-
-//This is what the API returns when the search doesn't find anything with the criteria; if the result object matches this, the NoRecTryAgain component will display
-const nullResult = {
-  count: 0,
-  next: null,
-  previous: null,
-  results: [],
-};
 
 //initial state for fetchCriteria reducer
 const initialCriteriaState = { region: '', priceRange: '', flavourMood: '' };
@@ -96,11 +87,10 @@ function App() {
         const pickedResult =
           data['results'][Math.floor(Math.random() * data['results'].length)];
         console.log({ pickedResult });
-        pickedResult !== nullResult
-          ? setWhiskyResult(pickedResult)
-          : setNoResults(true);
-        setWhiskyTags(pickedResult.tags.map((tagObj) => tagObj.title));
-        setPrice(pickedResult.price);
+        setWhiskyResult(pickedResult);
+        pickedResult &&
+          setWhiskyTags(pickedResult.tags.map((tagObj) => tagObj.title));
+        pickedResult && setPrice(pickedResult.price);
       });
   }, [fetchUrl]);
 
@@ -148,46 +138,38 @@ function App() {
   return (
     <div className="App">
       <Header />
-      {!noResults ? (
-        !showWhisky ? (
-          <>
-            <h3 className="subhead">
-              Muddled over malts? Boggled by barley? Simply set one or more of
-              the particulars below and tap the glass for guidance.
-            </h3>
-            <Dropdowns
-              criteriaDispatch={criteriaDispatch}
-              criteriaState={criteriaState}
-            />
-            <GlassButton handleClick={handleGlassButtonPress} />
-            <RandomFact fact={fact} />
-          </>
-        ) : (
-          <>
-            <h3 className="subhead">
-              Our slightly swaying sages have pondered your request and suggest:
-            </h3>
-            <WhiskyRecommendation
-              whiskyResult={whiskyResult}
-              priceRange={price}
-              tags={whiskyTags}
-              handleTryAgain={handleTryAgain}
-            />
-            <h3 className="subhead" id="slainte">
-              Sláinte!
-            </h3>
-            <h4
-              className="subhead"
-              id="tryAgainMessage"
-              onClick={handleTryAgain}
-            >
-              Not quite hitting the spot? <span id="tapHere">Tap here</span> to
-              consult the whisky oracle again.
-            </h4>
-          </>
-        )
+      {!showWhisky ? (
+        <>
+          <h3 className="subhead">
+            Muddled over malts? Boggled by barley? Simply set one or more of the
+            particulars below and tap the glass for guidance.
+          </h3>
+          <Dropdowns
+            criteriaDispatch={criteriaDispatch}
+            criteriaState={criteriaState}
+          />
+          <GlassButton handleClick={handleGlassButtonPress} />
+          <RandomFact fact={fact} />
+        </>
       ) : (
-        <NoRecTryAgain handleTryAgain={handleTryAgain} />
+        <>
+          <h3 className="subhead">
+            Our slightly swaying sages have pondered your request and suggest:
+          </h3>
+          <WhiskyRecommendation
+            whiskyResult={whiskyResult}
+            priceRange={price}
+            tags={whiskyTags}
+            handleTryAgain={handleTryAgain}
+          />
+          <h3 className="subhead" id="slainte">
+            Sláinte!
+          </h3>
+          <h4 className="subhead" id="tryAgainMessage" onClick={handleTryAgain}>
+            Not quite hitting the spot? <span id="tapHere">Tap here</span> to
+            consult the whisky oracle again.
+          </h4>
+        </>
       )}
       <footer>
         <p id="footerText">
