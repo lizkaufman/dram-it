@@ -147,8 +147,8 @@ function App() {
             Sláinte!
           </h3>
           <h4 className="subhead" id="tryAgainMessage" onClick={handleTryAgain}>
-            Not quite hitting the spot? Tap here to consult the whisky oracle
-            again.
+            Not quite hitting the spot? <span id="tapHere">Tap here</span> to
+            consult the whisky oracle again.
           </h4>
         </>
       )}
