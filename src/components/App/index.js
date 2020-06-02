@@ -52,8 +52,6 @@ function App() {
   //state to hold chosen whisky:
   const [whiskyResult, setWhiskyResult] = useState({});
   //state that holds if search results were empty:
-  const [noResults, setNoResults] = useState(false);
-  //state to hold tags for chosen whisky:
   const [whiskyTags, setWhiskyTags] = useState([]);
   //state to hold price for chosen whisky:
   const [price, setPrice] = useState(0);
@@ -132,7 +130,6 @@ function App() {
     criteriaDispatch({ type: CLEAR }); //clears dropdowns
     setFetchUrl('shoot/?'); //clears fetchUrl
     setShowWhisky(false);
-    setNoResults(false);
   }
 
   return (
