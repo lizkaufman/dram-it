@@ -58,8 +58,6 @@ function App() {
   const [whiskyResult, setWhiskyResult] = useState({});
   //state that holds if search results were empty:
   const [whiskyTags, setWhiskyTags] = useState([]);
-  //state to hold price for chosen whisky:
-  const [price, setPrice] = useState(0);
 
   //useReducer that populates fetch for whisky matching criteria:
   const [criteriaState, criteriaDispatch] = useReducer(
@@ -93,7 +91,6 @@ function App() {
         setWhiskyResult(pickedResult);
         pickedResult &&
           setWhiskyTags(pickedResult.tags.map((tagObj) => tagObj.title));
-        pickedResult && setPrice(pickedResult.price);
       });
   }, [fetchUrl]);
 
@@ -165,7 +162,6 @@ function App() {
           </h3>
           <WhiskyRecommendation
             whiskyResult={whiskyResult}
-            priceRange={price}
             tags={whiskyTags}
             handleTryAgain={handleTryAgain}
           />
