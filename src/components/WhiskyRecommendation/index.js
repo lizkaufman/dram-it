@@ -4,6 +4,8 @@ import css from './whiskyRecommendation.module.css';
 
 import NoRecTryAgain from './NoRecTryAgain';
 
+//TODO: move the fetch to here and then can lazy load
+
 function WhiskyRecommendation({ whiskyResult, price, tags, handleTryAgain }) {
   //state to hold priceRange in £ (comes from API in $):
   const [poundsPriceRange, setPoundsPriceRange] = useState('');
