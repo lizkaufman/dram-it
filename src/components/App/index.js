@@ -3,7 +3,7 @@ import './App.css';
 
 //import Header from '../Header';
 import Dropdowns from '../Dropdowns';
-import GlassButton from '../GlassButton';
+import GlassButton from '../GlassButton/index';
 import RandomFact from '../RandomFact';
 import WhiskyRecommendation from '../WhiskyRecommendation';
 
