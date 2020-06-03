@@ -11,16 +11,17 @@ function WhiskyRecommendation({ whiskyResult, price, tags, handleTryAgain }) {
   const [poundsPriceRange, setPoundsPriceRange] = useState('');
 
   useEffect(() => {
-    //FIXME: all prices now show up as £££ 😢
     //convert priceRange from $ to £ for display:
+    const price = whiskyResult.price;
+    console.log({ price });
     if (price <= 40) {
       setPoundsPriceRange('£');
     } else if (price > 40 && price <= 75) {
       setPoundsPriceRange('££');
-    } else {
+    } else if (price > 75) {
       setPoundsPriceRange('£££');
     }
-  }, [price]);
+  }, [whiskyResult]);
 
   return (
     <>
