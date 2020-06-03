@@ -4,21 +4,23 @@ import css from './whiskyRecommendation.module.css';
 
 import NoRecTryAgain from './NoRecTryAgain';
 
-function WhiskyRecommendation({ whiskyResult, price, tags, handleTryAgain }) {
+//TODO: move the fetch to here and then can lazy load
+
+function WhiskyRecommendation({ whiskyResult, tags, handleTryAgain }) {
   //state to hold priceRange in £ (comes from API in $):
   const [poundsPriceRange, setPoundsPriceRange] = useState('');
 
   useEffect(() => {
-    //FIXME: all prices now show up as £££ 😢
     //convert priceRange from $ to £ for display:
+    const price = whiskyResult.price;
     if (price <= 40) {
       setPoundsPriceRange('£');
     } else if (price > 40 && price <= 75) {
       setPoundsPriceRange('££');
-    } else {
+    } else if (price > 75) {
       setPoundsPriceRange('£££');
     }
-  }, [price]);
+  }, [whiskyResult]);
 
   return (
     <>

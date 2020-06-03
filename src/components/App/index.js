@@ -1,7 +1,7 @@
-import React, { useState, useReducer, useEffect } from 'react';
+import React, { useState, useReducer, useEffect, lazy, Suspense } from 'react';
 import './App.css';
 
-import Header from '../Header';
+//import Header from '../Header';
 import Dropdowns from '../Dropdowns';
 import GlassButton from '../GlassButton';
 import RandomFact from '../RandomFact';
@@ -13,6 +13,9 @@ import {
   ADD_FLAVOUR_MOOD,
   CLEAR,
 } from './actionTypes';
+
+//test case for lazy loading:
+const Header = lazy(() => import('../Header'));
 
 //TODO: also need an error message for if the user doesn't select anything in the dropdowns and then tries to click the glass!
 
@@ -42,6 +45,8 @@ function criteriaReducer(criteriaState, action) {
   }
 }
 
+//TODO: use react router and make the recommendation on its own page - that way I can lazy load the recommendation component until the fetch comes through (replace cond rendering)
+
 function App() {
   //state that manages whether the initial screen w/ dropdowns shows or the results screen:
   const [showWhisky, setShowWhisky] = useState(false);
@@ -53,8 +58,6 @@ function App() {
   const [whiskyResult, setWhiskyResult] = useState({});
   //state that holds if search results were empty:
   const [whiskyTags, setWhiskyTags] = useState([]);
-  //state to hold price for chosen whisky:
-  const [price, setPrice] = useState(0);
 
   //useReducer that populates fetch for whisky matching criteria:
   const [criteriaState, criteriaDispatch] = useReducer(
@@ -88,7 +91,6 @@ function App() {
         setWhiskyResult(pickedResult);
         pickedResult &&
           setWhiskyTags(pickedResult.tags.map((tagObj) => tagObj.title));
-        pickedResult && setPrice(pickedResult.price);
       });
   }, [fetchUrl]);
 
@@ -132,9 +134,14 @@ function App() {
     setShowWhisky(false);
   }
 
+  //TODO: react router!
+
   return (
     <div className="App">
-      <Header />
+      <Suspense fallback={<p>loading</p>}>
+        <Header />
+      </Suspense>
+
       {!showWhisky ? (
         <>
           <h3 className="subhead">
@@ -155,7 +162,6 @@ function App() {
           </h3>
           <WhiskyRecommendation
             whiskyResult={whiskyResult}
-            priceRange={price}
             tags={whiskyTags}
             handleTryAgain={handleTryAgain}
           />
