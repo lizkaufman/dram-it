@@ -27,3 +27,14 @@
   margin: 0;
   padding: 1.2vh;
 }
+
+@media only screen and (min-width: 530px) {
+  .whiskyRecommendation {
+    width: 40vw;
+  }
+
+  #whiskyImg {
+    width: 20vw;
+    height: auto;
+  }
+}

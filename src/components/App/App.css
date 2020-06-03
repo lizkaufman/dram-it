@@ -22,6 +22,10 @@
   color: var(--box-background);
 }
 
+#tryAgainMessage:hover {
+  cursor: pointer;
+}
+
 #tapHere {
   font-weight: bold;
 }

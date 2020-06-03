@@ -19,6 +19,8 @@ const Header = lazy(() => import('../Header'));
 
 //TODO: also need an error message for if the user doesn't select anything in the dropdowns and then tries to click the glass!
 
+//FIXME: still bug with the price not coming through correctly!
+
 const apiUrl = 'https://evening-citadel-85778.herokuapp.com/';
 
 //initial state for fetchCriteria reducer

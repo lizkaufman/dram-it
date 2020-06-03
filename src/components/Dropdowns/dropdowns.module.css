@@ -27,3 +27,9 @@ label {
   padding: 5px;
   text-align-last: center;
 }
+
+@media only screen and (min-width: 530px) {
+  .dropdownSelector {
+    width: 30vw;
+  }
+}
