@@ -74,7 +74,6 @@ function App() {
       .then((data) => {
         const factObj = data;
         setFact(factObj['results'][0]['text']);
-        // setFetchUrl(fetchUrl + `test`); <- ✅ setFetchUrl works here... so why doesn't it work in the handleGlassPress function?
       });
   }, []);
 
@@ -96,36 +95,30 @@ function App() {
 
   function handleGlassButtonPress() {
     //populate fetchUrl state:
-    const { region, priceRange, flavourMood } = criteriaState; //✅
-    console.log(criteriaState); //✅
+    const { region, priceRange, flavourMood } = criteriaState;
+    console.log(criteriaState);
 
     let addToUrl = 'shoot/?';
 
     if (region) {
-      console.log({ region }); //✅
-      // setFetchUrl(fetchUrl + `region=${region}&`);
-      // console.log({ fetchUrl });
+      console.log({ region });
       addToUrl = addToUrl + `region=${region}&`;
       console.log({ addToUrl });
     }
     if (priceRange) {
-      console.log({ priceRange }); //✅
-      // setFetchUrl(fetchUrl + `price=${priceRange}&`);
-      // console.log({ fetchUrl });
+      console.log({ priceRange });
       addToUrl = addToUrl + `priceRange=${priceRange}&`;
       console.log({ addToUrl });
     }
     if (flavourMood) {
-      console.log({ flavourMood }); //✅
-      // setFetchUrl(fetchUrl + `tags=${flavourMood}&`);
-      // console.log({ fetchUrl });
+      console.log({ flavourMood });
       addToUrl = addToUrl + `tags=${flavourMood}&`;
       console.log({ addToUrl });
     }
 
     setFetchUrl(addToUrl);
 
-    setShowWhisky(true); //shows result
+    setShowWhisky(true); //shows result component
   }
 
   function handleTryAgain() {
