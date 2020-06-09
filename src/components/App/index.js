@@ -154,7 +154,8 @@ function App() {
           <RandomFact fact={fact} />
         </>
       ) : (
-        <>
+        {
+          /* <>
           <h3 className="subhead">
             Our slightly swaying sages have pondered your request and suggest:
           </h3>
@@ -170,7 +171,8 @@ function App() {
             Not quite hitting the spot? <span id="tapHere">Tap here</span> to
             consult the whisky oracle again.
           </h4>
-        </>
+        </> */
+        }
       )}
       <Footer />
     </div>
