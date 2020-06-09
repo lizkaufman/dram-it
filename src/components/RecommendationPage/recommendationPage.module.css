@@ -1,0 +1,35 @@
+/* CSS SPECIFICALLY FOR THIS PAGE: */
+
+/* CSS COPIED FROM APP.CSS: */
+
+.App {
+  text-align: center;
+  padding: 1vh 1vw;
+}
+
+.subhead {
+  color: var(--accent);
+  padding: 0 5vw;
+  font-weight: normal;
+  font-size: 18px;
+}
+
+#slainte {
+  font-weight: bold;
+}
+
+#tryAgainMessage {
+  font-size: initial;
+}
+
+#tryAgainMessage:active {
+  color: var(--box-background);
+}
+
+#tryAgainMessage:hover {
+  cursor: pointer;
+}
+
+#tapHere {
+  font-weight: bold;
+}
