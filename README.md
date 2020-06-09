@@ -4,7 +4,7 @@ Whisky suggestion app using the slightly dodgy and neglected API [here](https://
 
 Hosted here: https://dram-it.netlify.app/
 
-*Known bug with current version: Price dropdown isn't coming through correctly - results don't match up with price range if specified (working for the other two selectors, just not price) - currently debugging!*
+*Known bug with current version: Price dropdown isn't coming through correctly - results don't match up with price range if specified (working for the other two selectors, just not price) - currently debugging! UPDATE: Now fetch not working for some combinations of perameters. Darn gremlins. Currently working on it... Will refactor to separate pages (via React Router) and rebuild fetch after that. Hopefully that should help straighten this up.*
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
