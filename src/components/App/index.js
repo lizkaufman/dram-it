@@ -6,6 +6,7 @@ import Dropdowns from '../Dropdowns';
 import GlassButton from '../GlassButton';
 import RandomFact from '../RandomFact';
 import WhiskyRecommendation from '../WhiskyRecommendation';
+import Footer from '../Footer';
 
 import {
   ADD_REGION,
@@ -169,19 +170,7 @@ function App() {
           </h4>
         </>
       )}
-      <footer>
-        <p id="footerText">
-          Made by Liz Kaufman.{' '}
-          <a
-            href="https://github.com/lizkaufman"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {' '}
-            View Github repo here.
-          </a>
-        </p>
-      </footer>
+      <Footer />
     </div>
   );
 }

@@ -29,13 +29,3 @@
 #tapHere {
   font-weight: bold;
 }
-
-#footerText {
-  color: var(--accent);
-  font-size: 80%;
-  padding-top: 1.2vh;
-}
-
-#footerText a {
-  color: var(--accent);
-}
