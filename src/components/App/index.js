@@ -1,6 +1,8 @@
 import React, { useState, useReducer, useEffect, lazy, Suspense } from 'react';
 import './App.css';
 
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+
 //import Header from '../Header';
 import Dropdowns from '../Dropdowns';
 import GlassButton from '../GlassButton';
@@ -20,7 +22,7 @@ const Header = lazy(() => import('../Header'));
 
 //TODO: also need an error message for if the user doesn't select anything in the dropdowns and then tries to click the glass!
 
-//FIXME: still bug with the price not coming through correctly!
+//FIXME: still bug with the price not coming through correctly! UPDATE: now fetch is pretty much completely busted...... Arg. Darn gremlins.
 
 const apiUrl = 'https://evening-citadel-85778.herokuapp.com/';
 
