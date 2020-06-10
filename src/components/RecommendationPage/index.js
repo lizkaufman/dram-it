@@ -16,6 +16,11 @@ TODO: REFACTOR PLAN:
 -Hook up restart link.
 */
 
+/*NOTES FROM BEN CHAT:
+- set up Router component at App level with just Switch with the Route components inside (don't need the nav bar bit w/ the uls and the Link components)
+- then can either wrap the button in a Link component OR (Ben's recommended way) can use the useHistory hook w/in React Router; it has access to all of the components that are a child of Router (via Route and Switch)
+*/
+
 function RecommendationPage() {
   return (
     <div>

@@ -139,8 +139,19 @@ function App() {
       <Suspense fallback={<p>loading</p>}>
         <Header />
       </Suspense>
-
-      {!showWhisky ? (
+      <>
+        <h3 className="subhead">
+          Muddled over malts? Boggled by barley? Simply set one or more of the
+          particulars below and tap the glass for guidance.
+        </h3>
+        <Dropdowns
+          criteriaDispatch={criteriaDispatch}
+          criteriaState={criteriaState}
+        />
+        <GlassButton handleClick={handleGlassButtonPress} />
+        <RandomFact fact={fact} />
+      </>
+      {/* {!showWhisky ? (
         <>
           <h3 className="subhead">
             Muddled over malts? Boggled by barley? Simply set one or more of the
@@ -154,8 +165,7 @@ function App() {
           <RandomFact fact={fact} />
         </>
       ) : (
-        {
-          /* <>
+        <>
           <h3 className="subhead">
             Our slightly swaying sages have pondered your request and suggest:
           </h3>
@@ -171,9 +181,8 @@ function App() {
             Not quite hitting the spot? <span id="tapHere">Tap here</span> to
             consult the whisky oracle again.
           </h4>
-        </> */
-        }
-      )}
+        </>
+      )} */}
       <Footer />
     </div>
   );
