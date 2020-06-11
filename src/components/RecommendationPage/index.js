@@ -10,9 +10,9 @@ import css from './recommendationPage.module.css';
 TODO: REFACTOR PLAN:
 -Move content conditionally rendered once glass button is pushed from App to here. ✅ 
 -Change classes/ids to css module format. ✅ 
--Add ReactRouter code at App level to control when this component is rendered (will need to refactor conditional rendering/showWhisky state).
--Set this component to receive the props it needs (from the dropdowns).
--Relocate the fetch and assoc. logic to this level.
+-Add ReactRouter code at App level to control when this component is rendered (will need to refactor away from conditional rendering/showWhisky state). ✅ 
+-Set this component to receive the props it needs (from the dropdowns). ✅ 
+-Relocate the fetch and assoc. logic to this level. ✅ 
 -Hook up restart link.
 */
 

@@ -9,11 +9,6 @@ import {
   useHistory,
 } from 'react-router-dom';
 
-//import Header from '../Header';
-// import Dropdowns from '../Dropdowns';
-// import GlassButton from '../GlassButton';
-// import RandomFact from '../RandomFact';
-// import WhiskyRecommendation from '../WhiskyRecommendation';
 import Home from '../Home';
 import RecommendationPage from '../RandomFact';
 import Footer from '../Footer';
@@ -74,6 +69,8 @@ function App() {
     initialCriteriaState
   );
 
+  let history = useHistory();
+
   function handleGlassButtonPress() {
     //populate fetchUrl state:
     const { region, priceRange, flavourMood } = criteriaState;
@@ -98,14 +95,15 @@ function App() {
     }
 
     setFetchUrl(addToUrl);
+
+    history.push('/recommendation');
   }
 
   function handleTryAgain() {
     criteriaDispatch({ type: CLEAR }); //clears dropdowns
     setFetchUrl('shoot/?'); //clears fetchUrl
+    history.push('/');
   }
-
-  //TODO: react router!
 
   return (
     <div className="App">
