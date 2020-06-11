@@ -4,10 +4,12 @@ import './App.css';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 //import Header from '../Header';
-import Dropdowns from '../Dropdowns';
-import GlassButton from '../GlassButton';
-import RandomFact from '../RandomFact';
-import WhiskyRecommendation from '../WhiskyRecommendation';
+// import Dropdowns from '../Dropdowns';
+// import GlassButton from '../GlassButton';
+// import RandomFact from '../RandomFact';
+// import WhiskyRecommendation from '../WhiskyRecommendation';
+import Home from '../Home';
+import RecommendationPage from '../RandomFact';
 import Footer from '../Footer';
 
 import {
@@ -71,6 +73,7 @@ function App() {
   );
 
   //fetches the random fact:
+  //TODO: move this further down potentially... does it still need to be up at App level?
   useEffect(() => {
     fetch(`${apiUrl}randomfact/`)
       .then((response) => {
@@ -139,7 +142,19 @@ function App() {
       <Suspense fallback={<p>loading</p>}>
         <Header />
       </Suspense>
-      <>
+
+      <Router>
+        <Switch>
+          <Route path="/">
+            <Home />
+          </Route>
+          <Route path="/recommendation">
+            <RecommendationPage />
+          </Route>
+        </Switch>
+      </Router>
+
+      {/* <>
         <h3 className="subhead">
           Muddled over malts? Boggled by barley? Simply set one or more of the
           particulars below and tap the glass for guidance.
@@ -150,39 +165,7 @@ function App() {
         />
         <GlassButton handleClick={handleGlassButtonPress} />
         <RandomFact fact={fact} />
-      </>
-      {/* {!showWhisky ? (
-        <>
-          <h3 className="subhead">
-            Muddled over malts? Boggled by barley? Simply set one or more of the
-            particulars below and tap the glass for guidance.
-          </h3>
-          <Dropdowns
-            criteriaDispatch={criteriaDispatch}
-            criteriaState={criteriaState}
-          />
-          <GlassButton handleClick={handleGlassButtonPress} />
-          <RandomFact fact={fact} />
-        </>
-      ) : (
-        <>
-          <h3 className="subhead">
-            Our slightly swaying sages have pondered your request and suggest:
-          </h3>
-          <WhiskyRecommendation
-            whiskyResult={whiskyResult}
-            tags={whiskyTags}
-            handleTryAgain={handleTryAgain}
-          />
-          <h3 className="subhead" id="slainte">
-            Sláinte!
-          </h3>
-          <h4 className="subhead" id="tryAgainMessage" onClick={handleTryAgain}>
-            Not quite hitting the spot? <span id="tapHere">Tap here</span> to
-            consult the whisky oracle again.
-          </h4>
-        </>
-      )} */}
+      </> */}
       <Footer />
     </div>
   );

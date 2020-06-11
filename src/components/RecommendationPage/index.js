@@ -24,7 +24,6 @@ TODO: REFACTOR PLAN:
 function RecommendationPage() {
   return (
     <div>
-      <Header />
       <h3 className={css.subhead}>
         Our slightly swaying sages have pondered your request and suggest:
       </h3>
@@ -44,7 +43,6 @@ function RecommendationPage() {
         Not quite hitting the spot? <span id={css.tapHere}>Tap here</span> to
         consult the whisky oracle again.
       </h4>
-      <Footer />
     </div>
   );
 }
