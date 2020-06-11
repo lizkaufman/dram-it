@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Dropdowns from '../Dropdowns';
 import GlassButton from '../GlassButton';
@@ -6,7 +6,12 @@ import RandomFact from '../RandomFact';
 
 import css from './home.module.css';
 
-function Home() {
+function Home({
+  apiUrl,
+  criteriaDispatch,
+  criteriaState,
+  handleGlassButtonPress,
+}) {
   //state to hold the fact:
   const [fact, setFact] = useState('');
 

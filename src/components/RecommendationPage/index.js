@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Header from '../Header';
 import WhiskyRecommendation from '../WhiskyRecommendation';
@@ -21,7 +21,28 @@ TODO: REFACTOR PLAN:
 - then can either wrap the button in a Link component OR (Ben's recommended way) can use the useHistory hook w/in React Router; it has access to all of the components that are a child of Router (via Route and Switch)
 */
 
-function RecommendationPage() {
+function RecommendationPage({ apiUrl, fetchUrl, handleTryAgain }) {
+  //state to hold chosen whisky:
+  const [whiskyResult, setWhiskyResult] = useState({});
+  //state to hold flavour tags of chosen whisky:
+  const [whiskyTags, setWhiskyTags] = useState([]);
+
+  useEffect(() => {
+    fetch(`${apiUrl}${fetchUrl}`)
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        console.log({ fetchUrl });
+        const pickedResult =
+          data['results'][Math.floor(Math.random() * data['results'].length)];
+        console.log({ pickedResult });
+        setWhiskyResult(pickedResult);
+        pickedResult &&
+          setWhiskyTags(pickedResult.tags.map((tagObj) => tagObj.title));
+      });
+  }, [fetchUrl]);
+
   return (
     <div>
       <h3 className={css.subhead}>

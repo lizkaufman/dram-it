@@ -1,7 +1,13 @@
 import React, { useState, useReducer, useEffect, lazy, Suspense } from 'react';
 import './App.css';
 
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useHistory,
+} from 'react-router-dom';
 
 //import Header from '../Header';
 // import Dropdowns from '../Dropdowns';
@@ -29,7 +35,11 @@ const Header = lazy(() => import('../Header'));
 const apiUrl = 'https://evening-citadel-85778.herokuapp.com/';
 
 //initial state for fetchCriteria reducer
-const initialCriteriaState = { region: '', priceRange: '', flavourMood: '' };
+const initialCriteriaState = {
+  region: '',
+  priceRange: '',
+  flavourMood: '',
+};
 
 //reducer function that picks up the values selected for each dropdown:
 function criteriaReducer(criteriaState, action) {
@@ -55,50 +65,14 @@ function criteriaReducer(criteriaState, action) {
 //TODO: use react router and make the recommendation on its own page - that way I can lazy load the recommendation component until the fetch comes through (replace cond rendering)
 
 function App() {
-  //state that manages whether the initial screen w/ dropdowns shows or the results screen:
-  const [showWhisky, setShowWhisky] = useState(false);
-  //state to hold the fact:
-  const [fact, setFact] = useState('');
   //state to hold the fetch url:
   const [fetchUrl, setFetchUrl] = useState('');
-  //state to hold chosen whisky:
-  const [whiskyResult, setWhiskyResult] = useState({});
-  //state that holds if search results were empty:
-  const [whiskyTags, setWhiskyTags] = useState([]);
 
   //useReducer that populates fetch for whisky matching criteria:
   const [criteriaState, criteriaDispatch] = useReducer(
     criteriaReducer,
     initialCriteriaState
   );
-
-  // //fetches the random fact: (NOTE: now in Home component - delete from here after testing)
-  // useEffect(() => {
-  //   fetch(`${apiUrl}randomfact/`)
-  //     .then((response) => {
-  //       return response.json();
-  //     })
-  //     .then((data) => {
-  //       const factObj = data;
-  //       setFact(factObj['results'][0]['text']);
-  //     });
-  // }, []);
-
-  useEffect(() => {
-    fetch(`${apiUrl}${fetchUrl}`)
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        console.log({ fetchUrl });
-        const pickedResult =
-          data['results'][Math.floor(Math.random() * data['results'].length)];
-        console.log({ pickedResult });
-        setWhiskyResult(pickedResult);
-        pickedResult &&
-          setWhiskyTags(pickedResult.tags.map((tagObj) => tagObj.title));
-      });
-  }, [fetchUrl]);
 
   function handleGlassButtonPress() {
     //populate fetchUrl state:
@@ -124,14 +98,11 @@ function App() {
     }
 
     setFetchUrl(addToUrl);
-
-    setShowWhisky(true); //shows result component
   }
 
   function handleTryAgain() {
     criteriaDispatch({ type: CLEAR }); //clears dropdowns
     setFetchUrl('shoot/?'); //clears fetchUrl
-    setShowWhisky(false);
   }
 
   //TODO: react router!
@@ -145,10 +116,19 @@ function App() {
       <Router>
         <Switch>
           <Route path="/">
-            <Home />
+            <Home
+              apiUrl={apiUrl}
+              criteriaDispatch={criteriaDispatch}
+              criteriaState={criteriaState}
+              handleGlassButtonPress={handleGlassButtonPress}
+            />
           </Route>
           <Route path="/recommendation">
-            <RecommendationPage />
+            <RecommendationPage
+              apiUrl={apiUrl}
+              fetchUrl={fetchUrl}
+              handleTryAgain={handleTryAgain}
+            />
           </Route>
         </Switch>
       </Router>
