@@ -72,18 +72,17 @@ function App() {
     initialCriteriaState
   );
 
-  //fetches the random fact:
-  //TODO: move this further down potentially... does it still need to be up at App level?
-  useEffect(() => {
-    fetch(`${apiUrl}randomfact/`)
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        const factObj = data;
-        setFact(factObj['results'][0]['text']);
-      });
-  }, []);
+  // //fetches the random fact: (NOTE: now in Home component - delete from here after testing)
+  // useEffect(() => {
+  //   fetch(`${apiUrl}randomfact/`)
+  //     .then((response) => {
+  //       return response.json();
+  //     })
+  //     .then((data) => {
+  //       const factObj = data;
+  //       setFact(factObj['results'][0]['text']);
+  //     });
+  // }, []);
 
   useEffect(() => {
     fetch(`${apiUrl}${fetchUrl}`)

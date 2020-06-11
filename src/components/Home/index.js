@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Dropdowns from '../Dropdowns';
 import GlassButton from '../GlassButton';
@@ -7,6 +7,21 @@ import RandomFact from '../RandomFact';
 import css from './home.module.css';
 
 function Home() {
+  //state to hold the fact:
+  const [fact, setFact] = useState('');
+
+  //fetches the random fact:
+  useEffect(() => {
+    fetch(`${apiUrl}randomfact/`)
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        const factObj = data;
+        setFact(factObj['results'][0]['text']);
+      });
+  }, []);
+
   return (
     <div>
       <h3 className={css.subhead}>
