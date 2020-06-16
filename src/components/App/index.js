@@ -71,7 +71,7 @@ function App() {
     initialCriteriaState
   );
 
-  const history = useHistory();
+  // const history = useHistory();
 
   function handleGlassButtonPress() {
     //populate fetchUrl state:
@@ -98,13 +98,13 @@ function App() {
 
     setFetchUrl(addToUrl);
 
-    history.push('/recommendation');
+    // history.push('/recommendation');
   }
 
   function handleTryAgain() {
     criteriaDispatch({ type: CLEAR }); //clears dropdowns
     setFetchUrl('shoot/?'); //clears fetchUrl
-    history.push('/');
+    // history.push('/');
   }
 
   return (

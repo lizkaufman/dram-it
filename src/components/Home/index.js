@@ -44,7 +44,6 @@ function Home({
         criteriaState={criteriaState}
       />
       <GlassButton handleClick={handleGlassButtonPress} />
-      {/* <RandomFact fact={fact} /> */}
       <Suspense fallback={<p>Random whisky fact loading...</p>}>
         <RandomFact fact={fact} />
       </Suspense>
