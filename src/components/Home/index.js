@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 
 import Dropdowns from '../Dropdowns';
 import GlassButton from '../GlassButton';
-import RandomFact from '../RandomFact';
+// import RandomFact from '../RandomFact';
 
 import css from './home.module.css';
+
+const RandomFact = lazy(() => import('../RandomFact'));
 
 function Home({
   apiUrl,
@@ -23,7 +25,11 @@ function Home({
       })
       .then((data) => {
         const factObj = data;
-        setFact(factObj['results'][0]['text']);
+        if (factObj['results'][0]['text']) {
+          setFact(factObj['results'][0]['text']);
+        } else {
+          setFact('Empty fact');
+        }
       });
   }, []);
 
@@ -38,7 +44,10 @@ function Home({
         criteriaState={criteriaState}
       />
       <GlassButton handleClick={handleGlassButtonPress} />
-      <RandomFact fact={fact} />
+      {/* <RandomFact fact={fact} /> */}
+      <Suspense fallback={<p>Random whisky fact loading...</p>}>
+        <RandomFact fact={fact} />
+      </Suspense>
     </div>
   );
 }

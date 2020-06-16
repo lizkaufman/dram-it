@@ -7,10 +7,11 @@ import {
   Route,
   Link,
   useHistory,
+  Redirect,
 } from 'react-router-dom';
 
 import Home from '../Home';
-import RecommendationPage from '../RandomFact';
+import RecommendationPage from '../RecommendationPage';
 import Footer from '../Footer';
 
 import {
@@ -24,6 +25,7 @@ import {
 const Header = lazy(() => import('../Header'));
 
 //TODO: also need an error message for if the user doesn't select anything in the dropdowns and then tries to click the glass!
+//can potentially use Redirect component from React Router to do this!
 
 //FIXME: still bug with the price not coming through correctly! UPDATE: now fetch is pretty much completely busted...... Arg. Darn gremlins.
 
@@ -69,7 +71,7 @@ function App() {
     initialCriteriaState
   );
 
-  let history = useHistory();
+  const history = useHistory();
 
   function handleGlassButtonPress() {
     //populate fetchUrl state:
@@ -130,19 +132,6 @@ function App() {
           </Route>
         </Switch>
       </Router>
-
-      {/* <>
-        <h3 className="subhead">
-          Muddled over malts? Boggled by barley? Simply set one or more of the
-          particulars below and tap the glass for guidance.
-        </h3>
-        <Dropdowns
-          criteriaDispatch={criteriaDispatch}
-          criteriaState={criteriaState}
-        />
-        <GlassButton handleClick={handleGlassButtonPress} />
-        <RandomFact fact={fact} />
-      </> */}
       <Footer />
     </div>
   );
