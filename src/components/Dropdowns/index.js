@@ -87,7 +87,6 @@ function Dropdowns({ criteriaDispatch, criteriaState }) {
           <option value="islay">Islay</option>
           <option value="speyside">Speyside</option>
           <option value="campbeltown">Campbeltown</option>
-          <option value="lowlands">Lowlands</option>
           <option value="irish">Irish</option>
           <option value="american">American</option>
           <option value="bourbon">Bourbon</option>

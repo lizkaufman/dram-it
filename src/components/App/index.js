@@ -45,7 +45,7 @@ function criteriaReducer(criteriaState, action) {
       console.log('ADD_FLAVOUR_MOOD', { payload });
       return { ...criteriaState, flavourMood: payload };
     case CLEAR:
-      console.log('', { payload });
+      console.log('CLEAR', { payload });
       return initialCriteriaState;
     default:
       return criteriaState;

@@ -7,21 +7,6 @@ import Footer from '../Footer';
 
 import css from './recommendationPage.module.css';
 
-/*
-TODO: REFACTOR PLAN:
--Move content conditionally rendered once glass button is pushed from App to here. ✅ 
--Change classes/ids to css module format. ✅ 
--Add ReactRouter code at App level to control when this component is rendered (will need to refactor away from conditional rendering/showWhisky state). ✅ 
--Set this component to receive the props it needs (from the dropdowns). ✅ 
--Relocate the fetch and assoc. logic to this level. ✅ 
--Hook up restart link.
-*/
-
-/*NOTES FROM BEN CHAT:
-- set up Router component at App level with just Switch with the Route components inside (don't need the nav bar bit w/ the uls and the Link components)
-- then can either wrap the button in a Link component OR (Ben's recommended way) can use the useHistory hook w/in React Router; it has access to all of the components that are a child of Router (via Route and Switch)
-*/
-
 function RecommendationPage({ apiUrl, fetchUrl, resetCriteria }) {
   //state to hold chosen whisky:
   const [whiskyResult, setWhiskyResult] = useState({});
@@ -29,7 +14,7 @@ function RecommendationPage({ apiUrl, fetchUrl, resetCriteria }) {
   const [whiskyTags, setWhiskyTags] = useState([]);
 
   useEffect(() => {
-    console.log({ combinedUrl: `${apiUrl}${fetchUrl}` });
+    console.log({ combinedUrl: `${apiUrl}${fetchUrl}` }); //✅
     fetch(`${apiUrl}${fetchUrl}`)
       .then((response) => {
         return response.json();
