@@ -4,8 +4,6 @@ Whisky suggestion app using the slightly dodgy and neglected API [here](https://
 
 Hosted here: https://dram-it.netlify.app/
 
-*Current hosted version has fetch bug; refactor currently in progress to restructure and hopefully sort this out.*
-
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## My main initial goals with the MVP version in regular React: 
