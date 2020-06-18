@@ -1,4 +1,4 @@
-import React, { useState, useReducer, useEffect, lazy, Suspense } from 'react';
+import React, { useState, useReducer, lazy, Suspense } from 'react';
 import './App.css';
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
