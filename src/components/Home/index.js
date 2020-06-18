@@ -30,7 +30,7 @@ function Home({ apiUrl, criteriaDispatch, criteriaState, populateFetchUrl }) {
           );
         }
       });
-  }, []);
+  }, [apiUrl]);
 
   const history = useHistory();
 

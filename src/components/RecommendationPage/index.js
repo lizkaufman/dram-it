@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import Header from '../Header';
 import WhiskyRecommendation from '../WhiskyRecommendation';
-import Footer from '../Footer';
 
 import css from './recommendationPage.module.css';
 
@@ -27,7 +25,7 @@ function RecommendationPage({ apiUrl, fetchUrl, resetCriteria }) {
         pickedResult &&
           setWhiskyTags(pickedResult.tags.map((tagObj) => tagObj.title));
       });
-  }, [fetchUrl]);
+  }, [apiUrl, fetchUrl]);
 
   const history = useHistory();
 
