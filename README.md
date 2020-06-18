@@ -1,6 +1,6 @@
 # Dram It! 
 
-Whisky suggestion app using the slightly dodgy and neglected API [here](https://evening-citadel-85778.herokuapp.com/docs/api-docs). If anyone finds a better whisky API, please tell me!
+Whisky suggestion app using the slightly dodgy and neglected API [here](https://evening-citadel-85778.herokuapp.com/docs/). If anyone finds a better whisky API, please tell me!
 
 Hosted here: https://dram-it.netlify.app/
 
