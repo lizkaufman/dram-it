@@ -78,7 +78,7 @@ function App() {
     }
     if (priceRange) {
       console.log({ priceRange });
-      addToUrl = addToUrl + `priceRange=${priceRange}&`;
+      addToUrl = addToUrl + `price=${priceRange}&`;
       console.log({ addToUrl });
     }
     if (flavourMood) {

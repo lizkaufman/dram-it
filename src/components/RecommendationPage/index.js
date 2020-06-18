@@ -31,6 +31,7 @@ function RecommendationPage({ apiUrl, fetchUrl, resetCriteria }) {
   useEffect(() => {
     fetch(`${apiUrl}${fetchUrl}`)
       .then((response) => {
+        console.log({ response });
         return response.json();
       })
       .then((data) => {
