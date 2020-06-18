@@ -45,7 +45,7 @@ function criteriaReducer(criteriaState, action) {
       console.log('ADD_FLAVOUR_MOOD', { payload });
       return { ...criteriaState, flavourMood: payload };
     case CLEAR:
-      console.log('', { payload });
+      console.log('CLEAR', { payload });
       return initialCriteriaState;
     default:
       return criteriaState;
@@ -76,15 +76,20 @@ function App() {
       addToUrl = addToUrl + `region=${region}&`;
       console.log({ addToUrl });
     }
+    if (flavourMood) {
+      console.log({ flavourMood });
+      addToUrl = addToUrl + `tags=${flavourMood}&`;
+      console.log({ addToUrl });
+    }
     if (priceRange) {
       console.log({ priceRange });
       addToUrl = addToUrl + `price=${priceRange}&`;
       console.log({ addToUrl });
     }
-    if (flavourMood) {
-      console.log({ flavourMood });
-      addToUrl = addToUrl + `tags=${flavourMood}&`;
-      console.log({ addToUrl });
+
+    //gets rid of final & at the end of the url:
+    if (addToUrl.charAt(addToUrl.length - 1 === '&')) {
+      addToUrl = addToUrl.slice(0, addToUrl.length - 1);
     }
 
     setFetchUrl(addToUrl);
