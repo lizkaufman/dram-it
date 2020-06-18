@@ -90,7 +90,7 @@ function App() {
     setFetchUrl(addToUrl);
   }
 
-  function handleTryAgain() {
+  function resetCriteria() {
     criteriaDispatch({ type: CLEAR }); //clears dropdowns
     setFetchUrl(''); //clears fetchUrl back to initial state
   }
@@ -115,7 +115,7 @@ function App() {
             <RecommendationPage
               apiUrl={apiUrl}
               fetchUrl={fetchUrl}
-              handleTryAgain={handleTryAgain}
+              resetCriteria={resetCriteria}
             />
           </Route>
         </Switch>
