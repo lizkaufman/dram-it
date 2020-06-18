@@ -10,17 +10,17 @@ function WhiskyRecommendation({ whiskyResult, tags, handleTryAgain }) {
   //state to hold priceRange in £ (comes from API in $):
   const [poundsPriceRange, setPoundsPriceRange] = useState('');
 
-  useEffect(() => {
-    //convert priceRange from $ to £ for display:
-    const price = whiskyResult.price;
-    if (price <= 40) {
-      setPoundsPriceRange('£');
-    } else if (price > 40 && price <= 75) {
-      setPoundsPriceRange('££');
-    } else if (price > 75) {
-      setPoundsPriceRange('£££');
-    }
-  }, [whiskyResult]);
+  // useEffect(() => {
+  //   //convert priceRange from $ to £ for display:
+  //   const price = whiskyResult.price;
+  //   if (price <= 40) {
+  //     setPoundsPriceRange('£');
+  //   } else if (price > 40 && price <= 75) {
+  //     setPoundsPriceRange('££');
+  //   } else if (price > 75) {
+  //     setPoundsPriceRange('£££');
+  //   }
+  // }, [whiskyResult]);
 
   return (
     <>
@@ -31,9 +31,9 @@ function WhiskyRecommendation({ whiskyResult, tags, handleTryAgain }) {
           <h4 className={css.infoSection} id={css.region}>
             Region: {whiskyResult.region}
           </h4>
-          <h4 className={css.infoSection} id={css.priceRange}>
+          {/* <h4 className={css.infoSection} id={css.priceRange}>
             Price range: {poundsPriceRange}
-          </h4>
+          </h4> */}
           <div className={css.infoSection}>
             <h4 id={css.tastingNotesHeader}>Tasting notes include:</h4>
             <p id={css.tastingNotesList}>
