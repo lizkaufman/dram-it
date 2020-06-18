@@ -9,7 +9,7 @@ function RandomFact({ fact }) {
     'A bottle of whisky can be kept for 100 years without losing it’s flavor. After opening, the whisky will retain its flavor for around 5 years.'
   ) {
     fact =
-      'A bottle of whisky can be kept for 100 years without losing its flavor. After opening, the whisky will retain its flavor for around 5 years.';
+      'A bottle of whisky can be kept for 100 years without losing its flavor. After opening, the whisky will retain its flavor for around five years.';
   }
 
   return (
