@@ -76,14 +76,14 @@ function App() {
       addToUrl = addToUrl + `region=${region}&`;
       console.log({ addToUrl });
     }
-    if (priceRange) {
-      console.log({ priceRange });
-      addToUrl = addToUrl + `price=${priceRange}&`;
-      console.log({ addToUrl });
-    }
     if (flavourMood) {
       console.log({ flavourMood });
       addToUrl = addToUrl + `tags=${flavourMood}&`;
+      console.log({ addToUrl });
+    }
+    if (priceRange) {
+      console.log({ priceRange });
+      addToUrl = addToUrl + `price=${priceRange}&`;
       console.log({ addToUrl });
     }
 

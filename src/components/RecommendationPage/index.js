@@ -29,13 +29,12 @@ function RecommendationPage({ apiUrl, fetchUrl, resetCriteria }) {
   const [whiskyTags, setWhiskyTags] = useState([]);
 
   useEffect(() => {
+    console.log({ combinedUrl: `${apiUrl}${fetchUrl}` });
     fetch(`${apiUrl}${fetchUrl}`)
       .then((response) => {
-        console.log({ response });
         return response.json();
       })
       .then((data) => {
-        console.log({ fetchUrl });
         const pickedResult =
           data['results'][Math.floor(Math.random() * data['results'].length)];
         console.log({ pickedResult });

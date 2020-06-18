@@ -82,7 +82,7 @@ function Dropdowns({ criteriaDispatch, criteriaState }) {
           value={criteriaState.region}
         >
           <option value=""></option>
-          <option value="highlands">Highlands</option>
+          <option value="highland">Highland</option>
           <option value="island">Island</option>
           <option value="islay">Islay</option>
           <option value="speyside">Speyside</option>
