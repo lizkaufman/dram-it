@@ -1,5 +1,7 @@
 import React, { useState, useEffect, lazy, Suspense } from 'react';
 
+import { useHistory } from 'react-router-dom';
+
 import Dropdowns from '../Dropdowns';
 import GlassButton from '../GlassButton';
 // import RandomFact from '../RandomFact';
@@ -8,12 +10,7 @@ import css from './home.module.css';
 
 const RandomFact = lazy(() => import('../RandomFact'));
 
-function Home({
-  apiUrl,
-  criteriaDispatch,
-  criteriaState,
-  handleGlassButtonPress,
-}) {
+function Home({ apiUrl, criteriaDispatch, criteriaState, populateFetchUrl }) {
   //state to hold the fact:
   const [fact, setFact] = useState('');
 
@@ -28,14 +25,27 @@ function Home({
         if (factObj['results'][0]['text']) {
           setFact(factObj['results'][0]['text']);
         } else {
-          setFact('Empty fact');
+          setFact(
+            'Something went wrong when consulting the oracle for your random nugget of whisky lore. *hic!* Refresh the page again to try again.'
+          );
         }
       });
   }, []);
 
+  const history = useHistory();
+
+  function testyTest() {
+    history.push('/recommendation');
+  }
+
+  function handleGlassButtonPress() {
+    populateFetchUrl();
+    history.push('/recommendation');
+  }
+
   return (
     <div>
-      <h3 className={css.subhead}>
+      <h3 className={css.subhead} onClick={testyTest}>
         Muddled over malts? Boggled by barley? Simply set one or more of the
         particulars below and tap the glass for guidance.
       </h3>

@@ -1,14 +1,7 @@
 import React, { useState, useReducer, useEffect, lazy, Suspense } from 'react';
 import './App.css';
 
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useHistory,
-  Redirect,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Home from '../Home';
 import RecommendationPage from '../RecommendationPage';
@@ -71,9 +64,7 @@ function App() {
     initialCriteriaState
   );
 
-  // const history = useHistory();
-
-  function handleGlassButtonPress() {
+  function populateFetchUrl() {
     //populate fetchUrl state:
     const { region, priceRange, flavourMood } = criteriaState;
     console.log(criteriaState);
@@ -97,8 +88,6 @@ function App() {
     }
 
     setFetchUrl(addToUrl);
-
-    // history.push('/recommendation');
   }
 
   function handleTryAgain() {
@@ -115,12 +104,12 @@ function App() {
 
       <Router>
         <Switch>
-          <Route path="/">
+          <Route exact path="/">
             <Home
               apiUrl={apiUrl}
               criteriaDispatch={criteriaDispatch}
               criteriaState={criteriaState}
-              handleGlassButtonPress={handleGlassButtonPress}
+              populateFetchUrl={populateFetchUrl}
             />
           </Route>
           <Route path="/recommendation">
