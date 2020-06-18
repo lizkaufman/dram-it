@@ -45,7 +45,7 @@ function criteriaReducer(criteriaState, action) {
       console.log('ADD_FLAVOUR_MOOD', { payload });
       return { ...criteriaState, flavourMood: payload };
     case CLEAR:
-      console.log('ADD_FLAVOUR_MOOD', { payload });
+      console.log('', { payload });
       return initialCriteriaState;
     default:
       return criteriaState;
@@ -92,8 +92,7 @@ function App() {
 
   function handleTryAgain() {
     criteriaDispatch({ type: CLEAR }); //clears dropdowns
-    setFetchUrl('shoot/?'); //clears fetchUrl
-    // history.push('/');
+    setFetchUrl(''); //clears fetchUrl back to initial state
   }
 
   return (

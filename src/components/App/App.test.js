@@ -1,9 +1,35 @@
 import React from 'react';
-import { render } from '@testing-library/react';
-import App from './App';
+//FIXME: write tests for criteriaReducer here!!
 
-test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
+//---TEST CODE FROM VOLT FOR REFERENCE:---
+
+//import { matchReducer } from './index';
+
+// import { SWIPE_RIGHT, SWIPE_LEFT } from './actiontypes';
+
+// const initialMatchState = { matchResults: [], swipeRights: 0 };
+// const org = { orgName: 'Test Org' };
+
+// describe('matchReducer', () => {
+//   it('should add test org to matchResults array when swiped right', function () {
+//     const actual = matchReducer(initialMatchState, {
+//       type: SWIPE_RIGHT,
+//       payload: org,
+//     });
+//     expect(actual).toEqual({ matchResults: [org], swipeRights: 1 });
+//   });
+//   it('should not add test org to matchResults array when swiped left', function () {
+//     const actual = matchReducer(initialMatchState, {
+//       type: SWIPE_LEFT,
+//       payload: org,
+//     });
+//     expect(actual).toEqual(initialMatchState);
+//   });
+//   it('should not add test org to matchResults array when an undefined action happens', function () {
+//     const actual = matchReducer(initialMatchState, {
+//       type: 'swipe-undefined',
+//       payload: org,
+//     });
+//     expect(actual).toEqual(initialMatchState);
+//   });
+// });

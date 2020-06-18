@@ -34,10 +34,6 @@ function Home({ apiUrl, criteriaDispatch, criteriaState, populateFetchUrl }) {
 
   const history = useHistory();
 
-  function testyTest() {
-    history.push('/recommendation');
-  }
-
   function handleGlassButtonPress() {
     populateFetchUrl();
     history.push('/recommendation');
@@ -45,7 +41,7 @@ function Home({ apiUrl, criteriaDispatch, criteriaState, populateFetchUrl }) {
 
   return (
     <div>
-      <h3 className={css.subhead} onClick={testyTest}>
+      <h3 className={css.subhead}>
         Muddled over malts? Boggled by barley? Simply set one or more of the
         particulars below and tap the glass for guidance.
       </h3>
