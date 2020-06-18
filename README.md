@@ -7,7 +7,7 @@ Hosted here: https://dram-it.netlify.app/
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## My main initial goals with the MVP version in regular React: 
-- Practice using Figma and sharpening my design skills, properly wireframing/designing the whole app before I started to build. (View my design [here](https://www.figma.com/file/ibQI54URpxdEZwoXxjYVdI/Dram-It?node-id=4%3A23))
+- Practice using Figma and sharpening my design skills, properly wireframing/designing the whole app before I started to build. (View my initial design [here](https://www.figma.com/file/ibQI54URpxdEZwoXxjYVdI/Dram-It?node-id=4%3A23).)
 - Keep practicing working with APIs and objects/data structures/JSONs.
 - Keep my React skills from going rusty (for example, more complicated hooks like useReducer).
 - Implement lazy loading/Suspense component for the whisky result component for a smoother UX (without it, there's an awkward delay while the API fetches and/or replaces the previous suggestion with the new one). - *TBC; currently refactoring to work on implementing this!*
