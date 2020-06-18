@@ -87,6 +87,11 @@ function App() {
       console.log({ addToUrl });
     }
 
+    //gets rid of final & at the end of the url:
+    if (addToUrl.charAt(addToUrl.length - 1 === '&')) {
+      addToUrl = addToUrl.slice(0, addToUrl.length - 1);
+    }
+
     setFetchUrl(addToUrl);
   }
 
