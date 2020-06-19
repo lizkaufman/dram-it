@@ -17,11 +17,6 @@ import {
 //test case for lazy loading:
 const Header = lazy(() => import('../Header'));
 
-//TODO: also need an error message for if the user doesn't select anything in the dropdowns and then tries to click the glass!
-//can potentially use Redirect component from React Router to do this!
-
-//FIXME: still bug with the price not coming through correctly! UPDATE: now fetch is pretty much completely busted...... Arg. Darn gremlins.
-
 const apiUrl = 'https://evening-citadel-85778.herokuapp.com/';
 
 //initial state for fetchCriteria reducer
@@ -51,8 +46,6 @@ function criteriaReducer(criteriaState, action) {
       return criteriaState;
   }
 }
-
-//TODO: use react router and make the recommendation on its own page - that way I can lazy load the recommendation component until the fetch comes through (replace cond rendering)
 
 function App() {
   //state to hold the fetch url:

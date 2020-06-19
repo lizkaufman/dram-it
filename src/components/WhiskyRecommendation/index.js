@@ -4,26 +4,27 @@ import css from './whiskyRecommendation.module.css';
 
 import NoRecTryAgain from './NoRecTryAgain';
 
-//TODO: move the fetch to here and then can lazy load
-
 function WhiskyRecommendation({ whiskyResult, tags, handleTryAgain }) {
   //state to hold priceRange in £ (comes from API in $):
   const [poundsPriceRange, setPoundsPriceRange] = useState('');
 
-  //testing note: lowlands and £££ errored out
-
   useEffect(() => {
     //convert priceRange from $ to £ for display:
-    const price = whiskyResult.price;
-    console.log({ actualPrice: price });
-    if (price <= 40) {
-      setPoundsPriceRange('£');
-    } else if (price > 40 && price <= 75) {
-      setPoundsPriceRange('££');
-    } else if (price > 75) {
-      setPoundsPriceRange('£££');
+    console.log({ whiskyResult });
+    if (whiskyResult !== {}) {
+      const price = whiskyResult.price;
+      console.log({ actualPrice: price });
+      if (price <= 40) {
+        setPoundsPriceRange('£');
+      } else if (price > 40 && price <= 75) {
+        setPoundsPriceRange('££');
+      } else if (price > 75) {
+        setPoundsPriceRange('£££');
+      }
     }
-  }, [whiskyResult]);
+    //TODO: check that this eslint-disable trick gets thru netlify... last time, it wouldn't deploy if there were any warnings!
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <>
