@@ -14,16 +14,20 @@ function WhiskyRecommendation({ whiskyResult, tags, handleTryAgain }) {
 
   useEffect(() => {
     //convert priceRange from $ to £ for display:
-    const price = whiskyResult.price;
-    console.log({ actualPrice: price });
-    if (price <= 40) {
-      setPoundsPriceRange('£');
-    } else if (price > 40 && price <= 75) {
-      setPoundsPriceRange('££');
-    } else if (price > 75) {
-      setPoundsPriceRange('£££');
+    console.log({ whiskyResult });
+    if (whiskyResult !== {}) {
+      const price = whiskyResult.price;
+      console.log({ actualPrice: price });
+      if (price <= 40) {
+        setPoundsPriceRange('£');
+      } else if (price > 40 && price <= 75) {
+        setPoundsPriceRange('££');
+      } else if (price > 75) {
+        setPoundsPriceRange('£££');
+      }
     }
-  }, [whiskyResult]);
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <>

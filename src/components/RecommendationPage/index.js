@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import WhiskyRecommendation from '../WhiskyRecommendation';
-
 import css from './recommendationPage.module.css';
+
+const WhiskyRecommendation = lazy(() => import('../WhiskyRecommendation'));
 
 function RecommendationPage({ apiUrl, fetchUrl, resetCriteria }) {
   //state to hold chosen whisky:
@@ -12,7 +12,7 @@ function RecommendationPage({ apiUrl, fetchUrl, resetCriteria }) {
   const [whiskyTags, setWhiskyTags] = useState([]);
 
   useEffect(() => {
-    console.log({ combinedUrl: `${apiUrl}${fetchUrl}` }); //✅
+    console.log({ combinedUrl: `${apiUrl}${fetchUrl}` });
     fetch(`${apiUrl}${fetchUrl}`)
       .then((response) => {
         return response.json();
@@ -39,11 +39,13 @@ function RecommendationPage({ apiUrl, fetchUrl, resetCriteria }) {
       <h3 className={css.subhead}>
         Our slightly swaying sages have pondered your request and suggest:
       </h3>
-      <WhiskyRecommendation
-        whiskyResult={whiskyResult}
-        tags={whiskyTags}
-        handleTryAgain={handleTryAgain}
-      />
+      <Suspense fallback={<p>Your next dream dram is loading...</p>}>
+        <WhiskyRecommendation
+          whiskyResult={whiskyResult}
+          tags={whiskyTags}
+          handleTryAgain={handleTryAgain}
+        />
+      </Suspense>
       <h3 className={css.subhead} id={css.slainte}>
         Sláinte!
       </h3>

@@ -52,8 +52,6 @@ function criteriaReducer(criteriaState, action) {
   }
 }
 
-//TODO: use react router and make the recommendation on its own page - that way I can lazy load the recommendation component until the fetch comes through (replace cond rendering)
-
 function App() {
   //state to hold the fetch url:
   const [fetchUrl, setFetchUrl] = useState('');
