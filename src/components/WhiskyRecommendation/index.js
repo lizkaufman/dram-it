@@ -10,8 +10,6 @@ function WhiskyRecommendation({ whiskyResult, tags, handleTryAgain }) {
   //state to hold priceRange in £ (comes from API in $):
   const [poundsPriceRange, setPoundsPriceRange] = useState('');
 
-  //testing note: lowlands and £££ errored out
-
   useEffect(() => {
     //convert priceRange from $ to £ for display:
     console.log({ whiskyResult });
@@ -26,6 +24,7 @@ function WhiskyRecommendation({ whiskyResult, tags, handleTryAgain }) {
         setPoundsPriceRange('£££');
       }
     }
+    //TODO: check that this eslint-disable trick gets thru netlify... last time, it wouldn't deploy if there were any warnings!
     // eslint-disable-next-line
   }, []);
 
