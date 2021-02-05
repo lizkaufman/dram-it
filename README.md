@@ -1,8 +1,8 @@
 # Dram It! 
 
-**Update 05/02/2021 - Unfortunately, it looks like the neglected whisky API I was using for this eight months ago is down, so this app no longer works. :( If I find another whisky API (or build one one day!), I'll resurrect this project though! :(**
-
 Whisky suggestion app using the slightly dodgy and neglected API [here](https://evening-citadel-85778.herokuapp.com/docs/). If anyone finds a better whisky API, please tell me!
+
+05/02/21 - Looks like there's a bug around the price filter! Region, flavor, and whisky wisdom seem functional still.
 
 Hosted here: https://dram-it.netlify.app/
 
