@@ -4,6 +4,8 @@ Whisky suggestion app using the slightly dodgy and neglected API [here](https://
 
 05/02/21 - Looks like there's a bug around the price filter! Region, flavor, and whisky wisdom seem functional still.
 
+26/08/25 - The API seems to be fully gone, so that means that my app is no longer functional. :( Alas, the perils of using other people's free public APIs...
+
 Hosted here: https://dram-it.netlify.app/
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
